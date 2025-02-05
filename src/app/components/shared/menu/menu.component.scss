@@ -34,3 +34,22 @@
         background: linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) 75%, var(--color-light-accent) 75%, var(--color-light-accent) 100%);
     }
 }
+
+#settings-container {
+    form {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: var(--padding);
+        input[type=text] {
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            width: 50%;
+        }
+        input[type=submit] {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            width: auto;
+        }
+    }
+}

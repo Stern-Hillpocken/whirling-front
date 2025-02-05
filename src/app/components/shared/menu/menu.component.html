@@ -12,7 +12,7 @@
         <app-svg name="theme"></app-svg>
         Thèmes
     </button>
-    <button>
+    <button (click)="switchSettingsDisplay()">
         <app-svg name="settings"></app-svg>
         Paramètres
     </button>
@@ -41,5 +41,19 @@
                 </button>
             </ng-container>
         </div>
+    </div>
+</div>
+
+<div class="all-screen-shadow" *ngIf="isSettingsDisplayed">
+    <div id="settings-container" class="popup">
+        <div class="popup-header">
+            <p>Changement des paramètres</p>
+            <button (click)="switchSettingsDisplay()"><app-svg name="close"></app-svg></button>
+        </div>
+        <p class="popup-subtitle">Pseudo</p>
+        <form (submit)="onSubmitNewUserName()">
+            <input type="text" [(ngModel)]="userName" name="userName" [maxLength]="22">
+            <input type="submit" class="button" value="Renommer">
+        </form>
     </div>
 </div>
