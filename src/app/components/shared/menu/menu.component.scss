@@ -1,0 +1,36 @@
+#menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--color-dominant);
+    border-bottom: 2px solid var(--color-font);
+    a, button {
+        color: var(--color-font);
+        &:hover {
+            color: var(--color-accent);
+        }
+    }
+}
+
+.game-title {
+    font-family: "font-header";
+    font-size: 32px;
+    padding-top: 16px;
+    margin-bottom: -16px;
+}
+
+#theme-container {
+    #color-list, #svg-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: var((--padding));
+        padding: var(--padding);
+        margin-bottom: var(--padding);
+        button {
+            width: auto;
+        }
+    }
+    #color-list button:hover {
+        background: linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) 75%, var(--color-light-accent) 75%, var(--color-light-accent) 100%);
+    }
+}

@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+    padding-top: 64px;
+}
+
+#landing-container {
+    display: flex;
+}
+
+#game-section-container {
+    width: 100%;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}

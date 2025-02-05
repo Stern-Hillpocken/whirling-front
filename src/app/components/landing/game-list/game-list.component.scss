@@ -1,0 +1,47 @@
+#game-list-container {
+    background-color: var(--color-complement);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+}
+
+#ask-password {
+    position: absolute;
+    background-color: var(--color-dominant);
+    border: 2px solid var(--color-font);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+.ask-visible {
+    visibility: visible;
+}
+.ask-hidden {
+    visibility: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    overflow: hidden;
+}
+thead {
+    background-color: var(--color-light-accent);
+}
+tbody tr:hover {
+    background-color: var(--color-light-accent);
+}
+tr {
+    border-bottom: 2px solid var(--color-font);
+}
+td {
+    padding: 4px;
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+    padding: var(--padding);
+}

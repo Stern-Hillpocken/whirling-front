@@ -1,0 +1,33 @@
+<div id="chat-container">
+    <div id="channel-container" [ngClass]="displayMessagesOf === 'hidden' ? 'channel-hidden' : ''">
+        <button (click)="switchDisplayTo('global')" [ngClass]="displayMessagesOf === 'global' ? 'button' : 'button-revert'">
+            <app-svg *ngIf="hasNewGlobalMessage" name="message-new"></app-svg>
+            <app-svg *ngIf="!hasNewGlobalMessage" name="message"></app-svg>
+            Global
+        </button>
+        <button (click)="switchDisplayTo('ingame')" [ngClass]="displayMessagesOf === 'ingame' ? 'button': 'button-revert'">
+            <app-svg *ngIf="hasNewIngameMessage" name="message-new"></app-svg>
+            <app-svg *ngIf="!hasNewIngameMessage" name="message"></app-svg>
+            Partie
+        </button>
+        <button (click)="switchDisplayTo('hidden')" *ngIf="displayMessagesOf !== 'hidden'" class="button-revert">
+            <app-svg name="setHidden"></app-svg>
+        </button>
+    </div>
+
+    <div id="messages-container" *ngIf="displayMessagesOf !== 'hidden'">
+        <div id="messages-list">
+            <ng-container *ngFor="let message of (displayMessagesOf === 'global' ? messageGlobalList : messageIngameList); let i = index">
+                <div class="message">
+                    <div><span class="message-user">{{ message.user }}</span> &nbsp; <span class="message-date">{{ message.date }}</span></div>
+                    <p>{{ message.content }}</p>
+                </div>
+            </ng-container>
+        </div>
+
+        <form (submit)="onSubmit()">
+            <input [(ngModel)]="messageContent" type="text" name="message">
+            <input type="submit" class="button" value=">">
+        </form>
+    </div>
+</div>

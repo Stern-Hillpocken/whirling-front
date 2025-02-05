@@ -1,0 +1,9 @@
+<div id="game-creation-container">
+    <h2>Création de partie</h2>
+    <form (submit)="onSubmit()">
+        <input type="text" [(ngModel)]="password" name="password" placeholder="Saisir un mot de passe...">
+        <input type="submit" class="button" value="Créer" *ngIf="!isSubmited">
+        <button class="button" *ngIf="isSubmited"><app-svg name="loading"></app-svg></button>
+    </form>
+    <app-tip text="Une fois crée envoie l’url à tes ami·es"></app-tip>
+</div>

@@ -1,0 +1,45 @@
+<div id="menu">
+    <a href="/tuto">
+        <app-svg name="tuto"></app-svg>
+        Tuto
+    </a>
+    <a>
+        <app-svg name="ingame"></app-svg>
+        Partie en cours
+    </a>
+    <a class="game-title" href="">Whirling {{ gameThemeSelected }}</a>
+    <button (click)="switchThemeDisplay()">
+        <app-svg name="theme"></app-svg>
+        Thèmes
+    </button>
+    <button>
+        <app-svg name="settings"></app-svg>
+        Paramètres
+    </button>
+</div>
+
+<div class="all-screen-shadow" [ngStyle]="{visibility: isThemeDisplayed ? 'visible' : 'hidden'}">
+    <div id="theme-container" class="popup">
+        <div class="popup-header">
+            <p>Changement des thèmes</p>
+            <button (click)="switchThemeDisplay()"><app-svg name="close"></app-svg></button>
+        </div>
+        <p class="popup-subtitle">Couleurs</p>
+        <div id="color-list">
+            <ng-container *ngFor="let color of colorThemes">
+                <button (click)="changeColorTheme(color)" theme="" [ngClass]="color === colorThemeSelected ? 'button' : 'button-revert'">{{ color }}</button>
+            </ng-container>
+        </div>
+        <p class="popup-subtitle">Thématiques</p>
+        <div id="svg-list">
+            <ng-container *ngFor="let type of gameThemes">
+                <button (click)="changeGameTheme(type)" [ngClass]="type === gameThemeSelected ? 'button' : 'button-revert'">
+                    <ng-container *ngFor="let colorCube of ['black', 'white', 'red', 'green', 'blue']; let i = index">
+                        <br *ngIf="i == 2">
+                        <app-svg [name]="svgName(type, colorCube)"></app-svg>
+                    </ng-container>
+                </button>
+            </ng-container>
+        </div>
+    </div>
+</div>

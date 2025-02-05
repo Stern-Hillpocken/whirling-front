@@ -1,0 +1,11 @@
+#game-creation-container {
+    background-color: var(--color-complement);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+}

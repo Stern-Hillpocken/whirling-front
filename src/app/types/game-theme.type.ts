@@ -1,0 +1,1 @@
+export type GameTheme = "element" | "fantasy" | "network" | "weather";

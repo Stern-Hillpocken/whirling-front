@@ -1,1 +1,149 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+    --color-font: white;
+    --color-font-invert: black;
+
+    --color-dominant: #222831;
+    --color-complement: #393e46;
+    --color-accent: #644cad;
+    --color-light-accent: #64afad;
+
+    --color-error: #a10000;
+    --color-valid: #309200;
+
+    --color-black: black;
+    --color-white: white;
+    --color-red: #BE3144;
+    --color-blue: #3282B8;
+    --color-green: #859F3D;
+
+    --border-radius: 12px;
+    --box-shadow: 2px 2px 2px black;
+    --padding: 0.5em;
+}
+@font-face {
+    font-family: "font-base";
+    src: url("assets/fonts/Llewie.ttf");
+}
+@font-face {
+    font-family: "font-header";
+    src: url("assets/fonts/Boutiques of Merauke.ttf");
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "font-base";
+    font-size: 24px;
+}
+body {
+    background-color: var(--color-dominant);
+    color: var(--color-font);
+}
+body[theme=crimson], button[theme=crimson] {
+    --color-dominant: #09122C;
+    --color-accent: #872341;
+    --color-light-accent: #BE3144;
+}
+body[theme=forest], button[theme=forest] {
+    --color-dominant: #1A1A19;
+    --color-accent: #31511E;
+    --color-light-accent: #859F3D;
+}
+body[theme=ocean], button[theme=ocean] {
+    --color-dominant: #1B262C;
+    --color-accent: #0F4C75;
+    --color-light-accent: #3282B8;
+}
+body[theme=squid], button[theme=squid] {
+    --color-dominant: #222831;
+    --color-accent: #644cad;
+    --color-light-accent: #64afad;
+}
+body[theme=sunset], button[theme=sunset] {
+    --color-dominant: #343131;
+    --color-accent: #A04747;
+    --color-light-accent: #d8A25E;
+}
+
+.all-screen-shadow {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+.popup {
+    position: absolute;
+    background-color: var(--color-dominant);
+    border: 2px solid var(--color-font);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    width: 50%;
+    margin-left: 25%;
+    .popup-header {
+        background-color: var(--color-light-accent);
+        display: flex;
+        justify-content: space-between;
+        padding: var(--padding);
+    }
+    .popup-subtitle {
+        border-bottom: 2px solid var(--color-font);
+        padding-left: var(--padding);
+    }
+}
+h1, h2, h3 {
+    font-family: "font-header";
+    color: var(--color-font);
+    font-size: 128px;
+    padding-top: 32px;
+    margin-bottom: -32px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a, input[type=submit] {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+.button, .button-revert {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    border-radius: var(--border-radius);
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+    &:hover {
+        background-color: var(--color-accent);
+        //background-color: var(--color-light-accent);
+        border: 2px solid var(--color-font);
+        box-shadow: none;
+        color: var(--color-font);
+    }
+}
+.button {
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+    box-shadow: var(--box-shadow);
+    color: var(--color-font);
+}
+.button-revert {
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+}
+
+input {
+    border-radius: var(--border-radius);
+}
+input[type=text] {
+    padding-left: 0.25em;
+}

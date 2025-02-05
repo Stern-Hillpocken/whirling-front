@@ -1,0 +1,76 @@
+#channel-container {
+    white-space: nowrap;
+    display: flex;
+    min-width: 2em;
+    border-bottom: 2px solid var(--color-font);
+    &.channel-hidden {
+        flex-direction: column;
+        border-left: 2px solid var(--color-font);
+        border-bottom: 0;
+    }
+}
+
+button {
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 0;
+    &:hover {
+        border-bottom: 0;
+    }
+}
+button:nth-child(3) {
+    border-top-right-radius: var(--border-radius);
+}
+
+.channel-hidden button {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
+    border-left: 0;
+    border-bottom: 2px solid var(--color-accent);
+    &:nth-child(1) {
+        border-top-right-radius: var(--border-radius);
+    }
+    &:nth-child(2) {
+        border-bottom-right-radius: var(--border-radius);
+    }
+    &:hover {
+        border-bottom: 2px solid var(--color-font);
+    }
+}
+
+#messages-container {
+    background-color: var(--color-complement);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+#messages-list {
+    padding-left: var(--padding);
+    padding-right: var(--padding);
+}
+
+.message {
+    margin-bottom: 1em;
+}
+.message-user {
+    color: var(--color-light-accent);
+}
+.message-date {
+    color: var(--color-dominant);
+    font-size: 0.5em;
+}
+
+form {
+    display: flex;
+    input[type=text] {
+        border-radius: 0;
+        box-shadow: var(--box-shadow);
+    }
+    input[type=submit] {
+        border-radius: 0;
+        border-bottom-right-radius: var(--border-radius);
+    }
+}
