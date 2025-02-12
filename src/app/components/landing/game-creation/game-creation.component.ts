@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { createGame } from 'src/app/store/game.actions';
 
 @Component({
   selector: 'app-game-creation',
@@ -7,12 +9,14 @@ import { Component } from '@angular/core';
 })
 export class GameCreationComponent {
 
+  store = inject(Store);
+
   password: string = '';
   isSubmited: boolean = false;
 
   onSubmit() {
     this.isSubmited = true;
-    //
+    this.store.dispatch(createGame());
   }
 
 }

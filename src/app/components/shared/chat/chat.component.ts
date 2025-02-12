@@ -6,6 +6,9 @@ import { MessageSended } from 'src/app/models/message-to-send.model';
 import { Identification } from 'src/app/models/identification.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MessageReceived } from 'src/app/models/message-received.model';
+import { Store } from '@ngrx/store';
+import { sendMessageGlobal, sendMessageIngame } from 'src/app/store/game.actions';
+import { selectUserId, selectUserName } from 'src/app/store/game.selectors';
 
 @Component({
   selector: 'app-chat',
@@ -14,7 +17,6 @@ import { MessageReceived } from 'src/app/models/message-received.model';
 })
 export class ChatComponent {
 
-  gameId: string = window.location.pathname.replace(/\/game\//, '');
   displayMessagesOf: "global" | "ingame" | "hidden" = "global";
   hasNewGlobalMessage: boolean = false;
   hasNewIngameMessage: boolean = false;
@@ -25,8 +27,8 @@ export class ChatComponent {
   socketClient: any = null;
   private notificationSubscriptionForGlobal: any;
   private notificationSubscriptionForIngame: any;
-  private http = inject(HttpClient);
-  private localStorage = inject(LocalStorageService);
+  
+  private store = inject(Store);
 
   ngOnInit() {
     let ws = new SockJS('http://localhost:8080/ws');
@@ -54,9 +56,16 @@ export class ChatComponent {
   }
 
   onSubmit() {
-    this.http.post<MessageReceived>('http://localhost:8080/api/message/'+ this.displayMessagesOf,
-      new MessageSended(new Identification(this.localStorage.getUserId() ?? "", this.localStorage.getUserName() ?? ""), this.messageContent)
-    ).subscribe();
+    if (this.displayMessagesOf === "global") {
+      this.store.dispatch(sendMessageGlobal({
+        message: new MessageSended(new Identification(this.store.selectSignal(selectUserId)(), this.store.selectSignal(selectUserName)()), this.messageContent)
+      }));
+    } else if (this.displayMessagesOf === "ingame") {
+      this.store.dispatch(sendMessageIngame({
+        message: new MessageSended(new Identification(this.store.selectSignal(selectUserId)(), this.store.selectSignal(selectUserName)()), this.messageContent)
+      }));
+    }
+    
     this.messageContent = "";
   }
 

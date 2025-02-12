@@ -41,4 +41,9 @@ export class LocalStorageService {
   setUserName(value: string) {
     window.localStorage.setItem("userName", value);
   }
+
+  setUser(id: string, name: string) {
+    this.setUserId(id);
+    this.setUserName(name);
+  }
 }
