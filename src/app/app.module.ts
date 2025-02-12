@@ -15,6 +15,10 @@ import { ChatComponent } from './components/shared/chat/chat.component';
 import { TipComponent } from './components/shared/tip/tip.component';
 import { MenuComponent } from './components/shared/menu/menu.component';
 import { SvgComponent } from './components/shared/svg/svg.component';
+import { provideState, provideStore, StoreModule } from '@ngrx/store';
+import { gameReducer } from './store/game.reducer';
+import { EffectsModule, provideEffects } from '@ngrx/effects';
+import { postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/game.effects';
 
 @NgModule({
   declarations: [
@@ -34,9 +38,19 @@ import { SvgComponent } from './components/shared/svg/svg.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
   ],
-  providers: [],
+  providers: [
+    provideStore({ game: gameReducer}),
+    provideState('appli', gameReducer),
+    provideEffects({
+      postRegister$,
+      postMessageGlobal$,
+      postMessageIngame$
+    })
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
