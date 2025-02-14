@@ -3,6 +3,7 @@ import { Identification } from "../models/identification.model";
 import { MessageSended } from "../models/message-to-send.model";
 import { GameTheme } from "../types/game-theme.type";
 import { IdentificationToUpdate } from "../models/identification-to-update.model";
+import { GameLogin } from "../models/game-login.model";
 
 
 //#region identification
@@ -28,8 +29,8 @@ export const sendMessageGlobalFailure = createAction('[Message] Send message in 
 
 
 //#region room
-export const createGame = createAction('[Room] Create game room');
-export const createGameSuccess = createAction('[Room] Create game room with success');
+export const createGame = createAction('[Room] Create game room', props<{ password: string }>());
+export const createGameSuccess = createAction('[Room] Create game room with success', props<GameLogin>());
 export const createGameFailure = createAction('[Room] Create game room with failure');
 
 export const joinGame = createAction('[Room] Join game room');

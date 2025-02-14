@@ -16,7 +16,7 @@ export class GameCreationComponent {
 
   onSubmit() {
     this.isSubmited = true;
-    this.store.dispatch(createGame());
+    this.store.dispatch(createGame({ password: this.password }));
   }
 
 }

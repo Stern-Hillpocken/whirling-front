@@ -18,7 +18,7 @@ import { SvgComponent } from './components/shared/svg/svg.component';
 import { provideState, provideStore, StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
-import { postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/game.effects';
+import { createGameSuccess$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/game.effects';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,9 @@ import { postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/g
     provideEffects({
       postRegister$,
       postMessageGlobal$,
-      postMessageIngame$
+      postMessageIngame$,
+      postCreateGame$,
+      createGameSuccess$
     })
   ],
   bootstrap: [AppComponent]
