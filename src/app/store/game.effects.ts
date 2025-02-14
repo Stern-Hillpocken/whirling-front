@@ -1,11 +1,13 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, switchMap } from 'rxjs';
+import { first, map, switchMap, tap } from 'rxjs';
 import { GameApiService } from '../services/game-api.service';
-import { register, registerSuccess, sendMessageGlobal, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameSuccess } from './game.actions';
+import { createGame, createGameSuccess, register, registerSuccess, sendMessageGlobal, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameSuccess } from './game.actions';
 import { Identification } from '../models/identification.model';
 import { MessageApiService } from '../services/message-api.service';
 import { MessageReceived } from '../models/message-received.model';
+import { Router } from '@angular/router';
+import { GameLogin } from '../models/game-login.model';
 
 export const postRegister$ = createEffect(
     (actions$ = inject(Actions), gameApiService = inject(GameApiService)) => {
@@ -35,6 +37,28 @@ export const postMessageIngame$ = createEffect(
             ofType(sendMessageIngame.type),
             switchMap((obj) => messageApiService.postMessageIngame(obj.message)),
             map((message: MessageReceived) => sendMessageIngameSuccess())
+        );
+    },
+    { functional: true }
+);
+
+export const postCreateGame$ = createEffect(
+    (actions$ = inject(Actions), gameApiService = inject(GameApiService)) => {
+        return actions$.pipe(
+            ofType(createGame.type),
+            switchMap((obj) => gameApiService.postCreateGame(obj.password)),
+            map((gameLogin: GameLogin) => createGameSuccess(gameLogin))
+        );
+    },
+    { functional: true }
+);
+
+export const createGameSuccess$ = createEffect(
+    (actions$ = inject(Actions), router = inject(Router)) => {
+        return actions$.pipe(
+            ofType(createGameSuccess.type),
+            first(),
+            tap((act: {id: string, password: string, type: string}) => router.navigate(['/game/'+act.id], { queryParams: {psw: act.password} }))
         );
     },
     { functional: true }
