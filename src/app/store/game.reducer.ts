@@ -11,7 +11,7 @@ export const initialState: ApplicationState = {
 export const gameReducer = createReducer(
     initialState,
 
-    on(changeUserName, (state, { identificationToUpdate }) => ({
+    on(changeUserName, (state) => ({
         ...state,
         //
     })),
@@ -19,9 +19,9 @@ export const gameReducer = createReducer(
         ...state,
         //
     })),
-    on(changeUserNameSuccess, (state, { name }) => ({
+    on(changeUserNameSuccess, (state, { username }) => ({
         ...state,
-        userName: name
+        userName: username
     })),
 
     on(createGame, (state) => ({
