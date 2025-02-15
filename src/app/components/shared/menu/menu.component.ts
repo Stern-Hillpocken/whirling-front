@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { IdentificationToUpdate } from 'src/app/models/identification-to-update.model';
-import { Identification } from 'src/app/models/identification.model';
+import { Store } from '@ngrx/store';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { changeUserName } from 'src/app/store/game.actions';
 import { ColorTheme } from 'src/app/types/color-theme.type';
 import { GameTheme } from 'src/app/types/game-theme.type';
 import { SvgType } from 'src/app/types/svg.type';
@@ -15,7 +15,7 @@ import { SvgType } from 'src/app/types/svg.type';
 export class MenuComponent {
 
   localStorageService = inject(LocalStorageService);
-  http = inject(HttpClient);
+  store = inject(Store);
 
   isThemeDisplayed: boolean = false;
   colorThemes: ColorTheme[] = ["crimson", "forest", "ocean", "squid", "sunset"];
@@ -56,11 +56,7 @@ export class MenuComponent {
   }
 
   onSubmitNewUserName() {
-    this.http.post<Identification>('http://localhost:8080/api/identification/update-username',
-      new IdentificationToUpdate(new Identification(this.localStorageService.getUserId() ?? "", this.localStorageService.getUserName() ?? ""), this.userName)
-    ).subscribe((ident: Identification) => {
-      this.localStorageService.setUserName(ident.userName);
-    });
+    this.store.dispatch(changeUserName({ username: this.userName }));
     this.isSettingsDisplayed = false;
   }
 

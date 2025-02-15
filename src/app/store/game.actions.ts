@@ -11,8 +11,8 @@ export const register = createAction('[Identification] Register user', props<{ i
 export const registerSuccess = createAction('[Identification] Register user with success', props<{ identification: Identification }>());
 export const registerFailure = createAction('[Identification] Register user with failure');
 
-export const changeUserName = createAction('[Identification] Change user name', props<{ identificationToUpdate: IdentificationToUpdate }>());
-export const changeUserNameSuccess = createAction('[Identification] Change user name with success', props<{ name: string }>());
+export const changeUserName = createAction('[Identification] Change user name', props<{ username: string}>());
+export const changeUserNameSuccess = createAction('[Identification] Change user name with success', props<{ username: string }>());
 export const changeUserNameFailure = createAction('[Identification] Change user name with failure');
 //#endregion
 
