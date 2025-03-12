@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { OneValueObject } from 'src/app/models/one-value-object.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { changeUserName } from 'src/app/store/game.actions';
+import { updateUserName } from 'src/app/store/game.actions';
 import { ColorTheme } from 'src/app/types/color-theme.type';
 import { GameTheme } from 'src/app/types/game-theme.type';
 import { SvgType } from 'src/app/types/svg.type';
@@ -56,7 +57,7 @@ export class MenuComponent {
   }
 
   onSubmitNewUserName() {
-    this.store.dispatch(changeUserName({ username: this.userName }));
+    this.store.dispatch(updateUserName(new OneValueObject(this.userName)));
     this.isSettingsDisplayed = false;
   }
 

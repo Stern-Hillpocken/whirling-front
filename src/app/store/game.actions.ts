@@ -2,8 +2,8 @@ import { createAction, props } from "@ngrx/store";
 import { Identification } from "../models/identification.model";
 import { MessageSended } from "../models/message-to-send.model";
 import { GameTheme } from "../types/game-theme.type";
-import { IdentificationToUpdate } from "../models/identification-to-update.model";
 import { GameLogin } from "../models/game-login.model";
+import { OneValueObject } from "../models/one-value-object.model";
 
 
 //#region identification
@@ -11,9 +11,9 @@ export const register = createAction('[Identification] Register user', props<{ i
 export const registerSuccess = createAction('[Identification] Register user with success', props<{ identification: Identification }>());
 export const registerFailure = createAction('[Identification] Register user with failure');
 
-export const changeUserName = createAction('[Identification] Change user name', props<{ username: string}>());
-export const changeUserNameSuccess = createAction('[Identification] Change user name with success', props<{ username: string }>());
-export const changeUserNameFailure = createAction('[Identification] Change user name with failure');
+export const updateUserName = createAction('[Identification] Update user name', props<OneValueObject>());
+export const updateUserNameSuccess = createAction('[Identification] Update user name with success', props<OneValueObject>());
+export const updateUserNameFailure = createAction('[Identification] Update user name with failure');
 //#endregion
 
 

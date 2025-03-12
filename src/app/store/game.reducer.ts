@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
-import { changeUserName, changeUserNameFailure, changeUserNameSuccess, createGame, createGameFailure, createGameSuccess, joinGame, joinGameFailure, joinGameSuccess, register, registerFailure, registerSuccess, sendMessageGlobal, sendMessageGlobalFailure, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameFailure, sendMessageIngameSuccess, updateGameTheme, updateGameThemeFailure, updateGameThemeSuccess } from './game.actions';
+import { updateUserName, updateUserNameFailure, updateUserNameSuccess, createGame, createGameFailure, createGameSuccess, joinGame, joinGameFailure, joinGameSuccess, register, registerFailure, registerSuccess, sendMessageGlobal, sendMessageGlobalFailure, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameFailure, sendMessageIngameSuccess, updateGameTheme, updateGameThemeFailure, updateGameThemeSuccess } from './game.actions';
 import { ApplicationState } from "../models/application-state";
+import { OneValueObject } from "../models/one-value-object.model";
 
 export const initialState: ApplicationState = {
     userId: "",
@@ -11,17 +12,17 @@ export const initialState: ApplicationState = {
 export const gameReducer = createReducer(
     initialState,
 
-    on(changeUserName, (state) => ({
+    on(updateUserName, (state) => ({
         ...state,
         //
     })),
-    on(changeUserNameFailure, (state) => ({
+    on(updateUserNameFailure, (state) => ({
         ...state,
         //
     })),
-    on(changeUserNameSuccess, (state, { username }) => ({
+    on(updateUserNameSuccess, (state, ovo: OneValueObject) => ({
         ...state,
-        userName: username
+        userName: ovo.value
     })),
 
     on(createGame, (state) => ({
