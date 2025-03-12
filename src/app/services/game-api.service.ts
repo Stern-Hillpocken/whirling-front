@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Identification } from '../models/identification.model';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { GameLogin } from '../models/game-login.model';
 })
 export class GameApiService {
 
-  private url = 'http://localhost:8080/api';
+  private url = 'http://localhost:8080/api/game';
   private http = inject(HttpClient);
   private store = inject(Store);
 
@@ -19,21 +19,11 @@ export class GameApiService {
     return new Identification(this.store.selectSignal(selectUserId)(), this.store.selectSignal(selectUserName)());
   }
 
-  postRegister(identification: Identification): Observable<Identification> {
-    return this.http.post<Identification>(this.url + '/identification',
-      new Identification(identification.userId, identification.userName)
-    );
-  }
-
-  postChangeUserName(username: string): Observable<Identification> {
-    const id = this.checkIdentification();
-    return this.http.post<Identification>(this.url+'/identification/update-username',
-      { identification: id, newUserName: username }
-    );
-  }
-
   postCreateGame(password: string): Observable<GameLogin> {
     const id = this.checkIdentification();
-    return this.http.post<GameLogin>(this.url + '/game/creation', { identification: id, password: password });
+    return this.http.post<GameLogin>(
+      this.url + '/creation',
+      { identification: id, password: password }
+    );
   }
 }

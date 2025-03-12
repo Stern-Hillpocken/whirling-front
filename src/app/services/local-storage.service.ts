@@ -25,6 +25,10 @@ export class LocalStorageService {
     return window.localStorage.getItem("userName");
   }
 
+  getToken(): string | null {
+    return window.localStorage.getItem("jwt");
+  }
+
   setColorTheme(value: ColorTheme) {
     window.localStorage.setItem("colorTheme", value);
     window.document.getElementsByTagName("body")[0].setAttribute("theme", value);
@@ -42,8 +46,14 @@ export class LocalStorageService {
     window.localStorage.setItem("userName", value);
   }
 
-  setUser(id: string, name: string) {
+  setToken(value: string) {
+    window.localStorage.setItem("jwt", value);
+  }
+
+  setCredentials(id: string, name: string, jwt: string) {
     this.setUserId(id);
     this.setUserName(name);
+    this.setToken(jwt)
   }
+
 }

@@ -8,7 +8,7 @@ import { GameCreationComponent } from './components/landing/game-creation/game-c
 import { GameComponent } from './pages/game/game.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TutoComponent } from './pages/tuto/tuto.component';
 import { GameListComponent } from './components/landing/game-list/game-list.component';
 import { ChatComponent } from './components/shared/chat/chat.component';
@@ -18,7 +18,8 @@ import { SvgComponent } from './components/shared/svg/svg.component';
 import { provideState, provideStore, StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
-import { changeUserNameSuccess$, createGameSuccess$, postChangeUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/game.effects';
+import { updateUserNameSuccess$, createGameSuccess$, postUpdateUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/game.effects';
+import { TokenInterceptor } from './core/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,11 @@ import { changeUserNameSuccess$, createGameSuccess$, postChangeUserName$, postCr
     EffectsModule.forRoot([])
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     provideStore({ game: gameReducer}),
     provideState('appli', gameReducer),
     provideEffects({
@@ -51,8 +57,8 @@ import { changeUserNameSuccess$, createGameSuccess$, postChangeUserName$, postCr
       postMessageIngame$,
       postCreateGame$,
       createGameSuccess$,
-      postChangeUserName$,
-      changeUserNameSuccess$
+      postUpdateUserName$,
+      updateUserNameSuccess$
     })
   ],
   bootstrap: [AppComponent]
