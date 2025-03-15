@@ -31,7 +31,7 @@ export const postMessageGlobal$ = createEffect(
     (actions$ = inject(Actions), messageApiService = inject(MessageApiService)) => {
         return actions$.pipe(
             ofType(sendMessageGlobal.type),
-            switchMap((obj) => messageApiService.postMessageGlobal(obj.message)),
+            switchMap((action) => messageApiService.postMessageGlobal(action.value)),
             map((message: MessageReceived) => sendMessageGlobalSuccess())
         );
     },
@@ -42,7 +42,7 @@ export const postMessageIngame$ = createEffect(
     (actions$ = inject(Actions), messageApiService = inject(MessageApiService)) => {
         return actions$.pipe(
             ofType(sendMessageIngame.type),
-            switchMap((obj) => messageApiService.postMessageIngame(obj.message)),
+            switchMap((action) => messageApiService.postMessageIngame(action.value)),
             map((message: MessageReceived) => sendMessageIngameSuccess())
         );
     },

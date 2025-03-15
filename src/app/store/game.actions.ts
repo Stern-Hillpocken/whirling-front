@@ -1,6 +1,5 @@
 import { createAction, props } from "@ngrx/store";
 import { Identification } from "../models/identification.model";
-import { MessageSended } from "../models/message-to-send.model";
 import { GameTheme } from "../types/game-theme.type";
 import { GameLogin } from "../models/game-login.model";
 import { OneValueObject } from "../models/one-value-object.model";
@@ -18,11 +17,11 @@ export const updateUserNameFailure = createAction('[Identification] Update user 
 
 
 //#region message
-export const sendMessageIngame = createAction('[Message] Send message ingame', props<{ message: MessageSended }>());
+export const sendMessageIngame = createAction('[Message] Send message ingame', props<OneValueObject>());
 export const sendMessageIngameSuccess = createAction('[Message] Send message ingame with success');
 export const sendMessageIngameFailure = createAction('[Message] Send message ingame with failure');
 
-export const sendMessageGlobal = createAction('[Message] Send message in global', props<{ message: MessageSended }>());
+export const sendMessageGlobal = createAction('[Message] Send message in global', props<OneValueObject>());
 export const sendMessageGlobalSuccess = createAction('[Message] Send message in global with success');
 export const sendMessageGlobalFailure = createAction('[Message] Send message in global with failure');
 //#endregion

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MessageReceived } from '../models/message-received.model';
-import { MessageSended } from '../models/message-to-send.model';
+import { OneValueObject } from '../models/one-value-object.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,18 @@ export class MessageApiService {
   private url = 'http://localhost:8080/api/message';
   private http = inject(HttpClient);
 
-  postMessage(message: MessageSended, channel: "global" | "ingame"): Observable<MessageReceived> {
-    return this.http.post<MessageReceived>(this.url + '/' + channel, message);
+  postMessage(channel: "global" | "ingame", message: string): Observable<MessageReceived> {
+    return this.http.post<MessageReceived>(
+      this.url + '/' + channel,
+      new OneValueObject(message)
+    );
   }
 
-  postMessageGlobal(message: MessageSended): Observable<MessageReceived> {
-    return this.postMessage(message, 'global');
+  postMessageGlobal(message: string): Observable<MessageReceived> {
+    return this.postMessage('global', message);
   }
 
-  postMessageIngame(message: MessageSended): Observable<MessageReceived> {
-    return this.postMessage(message, 'ingame');
+  postMessageIngame(message: string): Observable<MessageReceived> {
+    return this.postMessage('ingame', message);
   }
 }
