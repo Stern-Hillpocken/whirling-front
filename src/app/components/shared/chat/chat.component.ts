@@ -1,14 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
-import { MessageSended } from 'src/app/models/message-to-send.model';
-import { Identification } from 'src/app/models/identification.model';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { MessageReceived } from 'src/app/models/message-received.model';
 import { Store } from '@ngrx/store';
 import { sendMessageGlobal, sendMessageIngame } from 'src/app/store/game.actions';
-import { selectUserId, selectUserName } from 'src/app/store/game.selectors';
+import { OneValueObject } from 'src/app/models/one-value-object.model';
 
 @Component({
   selector: 'app-chat',
@@ -33,7 +29,9 @@ export class ChatComponent {
   ngOnInit() {
     let ws = new SockJS('http://localhost:8080/ws');
     this.socketClient = Stomp.over(ws);
+    console.log("0")
     this.socketClient.connect({}, () => {
+      console.log("1")
       this.notificationSubscriptionForGlobal = this.socketClient.subscribe(
         '/messages/global/notifications',
         (message: any) => {
@@ -43,6 +41,7 @@ export class ChatComponent {
           }
         }
       );
+      console.log("2")
       this.notificationSubscriptionForIngame = this.socketClient.subscribe(
         '/messages/ingame/notifications',
         (message: any) => {
@@ -57,13 +56,9 @@ export class ChatComponent {
 
   onSubmit() {
     if (this.displayMessagesOf === "global") {
-      this.store.dispatch(sendMessageGlobal({
-        message: new MessageSended(new Identification(this.store.selectSignal(selectUserId)(), this.store.selectSignal(selectUserName)()), this.messageContent)
-      }));
+      this.store.dispatch(sendMessageGlobal(new OneValueObject(this.messageContent)));
     } else if (this.displayMessagesOf === "ingame") {
-      this.store.dispatch(sendMessageIngame({
-        message: new MessageSended(new Identification(this.store.selectSignal(selectUserId)(), this.store.selectSignal(selectUserName)()), this.messageContent)
-      }));
+      this.store.dispatch(sendMessageIngame(new OneValueObject(this.messageContent)));
     }
     
     this.messageContent = "";
