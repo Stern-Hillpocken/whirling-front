@@ -7,7 +7,6 @@ import { Identification } from '../models/identification.model';
 import { MessageApiService } from '../services/message-api.service';
 import { MessageReceived } from '../models/message-received.model';
 import { Router } from '@angular/router';
-import { GameLogin } from '../models/game-login.model';
 import { LocalStorageService } from '../services/local-storage.service';
 import { UserApiService } from '../services/user-api.service';
 import { IdCredentials } from '../models/id-credentials.model';
@@ -53,8 +52,8 @@ export const postCreateGame$ = createEffect(
     (actions$ = inject(Actions), gameApiService = inject(GameApiService)) => {
         return actions$.pipe(
             ofType(createGame.type),
-            switchMap((obj) => gameApiService.postCreateGame(obj.password)),
-            map((gameLogin: GameLogin) => createGameSuccess(gameLogin))
+            switchMap((action) => gameApiService.postCreateGame(action.value)),
+            map((actionGameLogin) => createGameSuccess(actionGameLogin))
         );
     },
     { functional: true }
@@ -65,7 +64,7 @@ export const createGameSuccess$ = createEffect(
         return actions$.pipe(
             ofType(createGameSuccess.type),
             first(),
-            tap((act: {id: string, password: string, type: string}) => router.navigate(['/game/'+act.id], { queryParams: {psw: act.password} }))
+            tap((action: {type: string, id: string, password: string}) => router.navigate(['/game/'+action.id], { queryParams: {psw: action.password} }))
         );
     },
     { functional: true }

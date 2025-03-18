@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { OneValueObject } from 'src/app/models/one-value-object.model';
 import { createGame } from 'src/app/store/game.actions';
 
 @Component({
@@ -16,7 +17,7 @@ export class GameCreationComponent {
 
   onSubmit() {
     this.isSubmited = true;
-    this.store.dispatch(createGame({ password: this.password }));
+    this.store.dispatch(createGame(new OneValueObject(this.password)));
   }
 
 }
