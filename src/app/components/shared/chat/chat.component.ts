@@ -29,9 +29,7 @@ export class ChatComponent {
   ngOnInit() {
     let ws = new SockJS('http://localhost:8080/ws');
     this.socketClient = Stomp.over(ws);
-    console.log("0")
     this.socketClient.connect({}, () => {
-      console.log("1")
       this.notificationSubscriptionForGlobal = this.socketClient.subscribe(
         '/messages/global/notifications',
         (message: any) => {
@@ -41,7 +39,6 @@ export class ChatComponent {
           }
         }
       );
-      console.log("2")
       this.notificationSubscriptionForIngame = this.socketClient.subscribe(
         '/messages/ingame/notifications',
         (message: any) => {

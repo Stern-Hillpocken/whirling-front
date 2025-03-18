@@ -28,7 +28,7 @@ export const sendMessageGlobalFailure = createAction('[Message] Send message in 
 
 
 //#region room
-export const createGame = createAction('[Room] Create game room', props<{ password: string }>());
+export const createGame = createAction('[Room] Create game room', props<OneValueObject>());
 export const createGameSuccess = createAction('[Room] Create game room with success', props<GameLogin>());
 export const createGameFailure = createAction('[Room] Create game room with failure');
 
