@@ -1,7 +1,7 @@
-export class GameList {
+export class GameInfo {
     constructor(
         public date: number,
-        public owner: string,
+        public ownerName: string,
         public gameId: string
     ){}
 }

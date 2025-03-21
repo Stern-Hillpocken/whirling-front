@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GameLogin } from '../models/game-login.model';
 import { OneValueObject } from '../models/one-value-object.model';
+import { GameInfo } from '../models/game-info.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,12 @@ export class GameApiService {
     return this.http.post<GameLogin>(
       this.url + '/creation',
       new OneValueObject(password)
+    );
+  }
+
+  getAllGames(): Observable<GameInfo[]> {
+    return this.http.get<GameInfo[]>(
+      this.url + '/all-games'
     );
   }
 }
