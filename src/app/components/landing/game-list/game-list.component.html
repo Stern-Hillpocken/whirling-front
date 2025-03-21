@@ -5,7 +5,7 @@
     <div class="all-screen-shadow" [ngClass]="isJoining ? 'ask-visible' : 'ask-hidden'">
         <div id="ask-password" [ngStyle]="{ 'left': cursorX+'px', 'top': cursorY+'px' }">
             <div class="popup-header">
-                <p>Partie de {{ selectedGame.owner }}</p>
+                <p>Partie de {{ selectedGame.ownerName }}</p>
                 <button (click)="isJoining = false"><app-svg name="close"></app-svg></button>
             </div>
             <form (submit)="onSubmit()">
@@ -25,9 +25,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let line of games; let i = index">
-                <td>{{ line.date }}</td>
-                <td>{{ line.owner }}</td>
+            <tr *ngFor="let line of allGames; let i = index">
+                <td>{{ line.date | date:'H:mm' }}</td>
+                <td>{{ line.ownerName }}</td>
                 <td><button class="button" (click)="onJoin(line, $event)">Rejoindre</button></td>
             </tr>
         </tbody>

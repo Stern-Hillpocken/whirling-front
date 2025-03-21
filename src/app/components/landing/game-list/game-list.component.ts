@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { GameList } from 'src/app/models/game-list.model';
+import { Component, inject } from '@angular/core';
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+import { GameInfo } from 'src/app/models/game-info.model';
+import { GameApiService } from 'src/app/services/game-api.service';
 
 @Component({
   selector: 'app-game-list',
@@ -8,15 +11,33 @@ import { GameList } from 'src/app/models/game-list.model';
 })
 export class GameListComponent {
 
-  games: GameList[] = [{date: 34, owner: "jo", gameId: "oip-pp"}, {date: 44, owner: "mii", gameId: "popo-lulu"}, {date: 55, owner: "lette", gameId: "moi-toi"}];
+  gameApiService = inject(GameApiService);
+  allGames: GameInfo[] = [];
   isJoining: boolean = false;
   password: string = '';
   isSubmitting: boolean = false;
-  selectedGame: GameList = new GameList(0, '', '');
+  selectedGame: GameInfo = new GameInfo(0, '', '');
   cursorX: number = 0;
   cursorY: number = 0;
 
-  onJoin(selectedGame: GameList, mouse: MouseEvent) {
+  socketClient: any = null;
+  private notificationSubscriptionForGameCreation: any;
+
+  ngOnInit() {
+    this.gameApiService.getAllGames().subscribe((allGames: GameInfo[]) => this.allGames = allGames.sort((a,b) => b.date - a.date));
+    let ws = new SockJS('http://localhost:8080/ws');
+    this.socketClient = Stomp.over(ws);
+    this.socketClient.connect({}, () => {
+      this.notificationSubscriptionForGameCreation = this.socketClient.subscribe(
+        '/general/game-creation',
+        (obj: any) => {
+          this.allGames.unshift(JSON.parse(obj.body));
+        }
+      );
+    });
+  }
+
+  onJoin(selectedGame: GameInfo, mouse: MouseEvent) {
     this.isJoining = true;
     this.selectedGame = selectedGame;
     
