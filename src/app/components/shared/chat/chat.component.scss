@@ -50,16 +50,27 @@ button:nth-child(3) {
 #messages-list {
     padding-left: var(--padding);
     padding-right: var(--padding);
+    height: 50vh;
+    overflow: scroll;
 }
 
-.message {
-    margin-bottom: 1em;
+.game-message {
+    .message-user, p {
+        color: var(--color-dominant);
+    }
 }
-.message-user {
-    color: var(--color-light-accent);
+.my-message {
+    .message-user {
+        color: var(--color-light-accent);
+    }
 }
+.user-message {
+    .message-user {
+        color: var(--color-accent);
+    }
+}
+
 .message-date {
-    color: var(--color-dominant);
     font-size: 0.5em;
 }
 
