@@ -1,0 +1,23 @@
+<div id="hub-container">
+
+    <div class="players-block">
+        <div id="current-players-container">
+            <ng-container *ngFor="let player of currentPlayers; let i = index">
+                <p [style]="{left: circlePlayerPositionX(i), top: circlePlayerPositionY(i)}" class="current-player-name">
+                    <span class="player-name"><app-svg name="host" *ngIf="i === 0"></app-svg>{{ player }}</span>
+                    <span class="rotation-buttons-container">
+                        <button (click)="moveClockwise(i)"><app-svg name="move-player-clockwise"></app-svg></button>
+                        <button (click)="moveAnticlockwise(i)"><app-svg name="move-player-anticlockwise"></app-svg></button>
+                    </span>
+                </p>
+            </ng-container>
+        </div>
+
+        <app-tip text="Survole un pseudo pour réarranger l’ordre autour de la table."></app-tip>
+        <app-tip text="Les éléments de jeu se passent dans le sens des aiguilles d’une montre."></app-tip>
+        <button (click)="randomizeSeats()" class="button-revert randomize-button"><app-svg [name]="isRandomizedSeats ? 'checkbox-checked' : 'checkbox-blank'"></app-svg>Randomiser les sièges au lancement</button>
+    </div>
+
+    <button class="button-revert" (click)="launchGame()">Lancer la partie</button>
+
+</div>

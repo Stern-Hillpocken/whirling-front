@@ -1,0 +1,57 @@
+#hub-container {
+    margin: 2%;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100%;
+}
+
+.players-block {
+    background-color: var(--color-complement);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    .randomize-button {
+        background-color: var(--color-dominant);
+        &:hover {
+            background-color: var(--color-accent);
+        }
+    }
+}
+
+#current-players-container {
+    background-color: var(--color-dominant);
+    border: 2px solid var(--color-font);
+    border-radius: 100%;
+    width: 40vw;
+    height: 40vw;
+    margin: auto;
+    margin-bottom: 1em;
+    position: relative;
+    p {
+        position: absolute;
+        background-color: var(--color-dominant);
+        border: 2px solid var(--color-accent);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        text-wrap: nowrap;
+        transform: translate(-50%, 50%);
+        z-index: 100;
+        &:hover {
+            z-index: 101;
+        }
+        &:hover button {
+            display: inline-block;
+        }
+        button {
+            display: none;
+        }
+        button:hover {
+            background-color: var(--color-accent);
+        }
+        .player-name {
+            padding-left: var(--padding);
+            padding-right: var(--padding);
+        }
+    }
+}
