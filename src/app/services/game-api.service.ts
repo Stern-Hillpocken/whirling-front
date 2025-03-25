@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GameLogin } from '../models/game-login.model';
 import { OneValueObject } from '../models/one-value-object.model';
 import { GameInfo } from '../models/game-info.model';
+import { Game } from '../models/game.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,12 @@ export class GameApiService {
   getAllGames(): Observable<GameInfo[]> {
     return this.http.get<GameInfo[]>(
       this.url + '/all-games'
+    );
+  }
+
+  getGame(url: string): Observable<Game> {
+    return this.http.get<Game>(
+      this.url + url
     );
   }
 }

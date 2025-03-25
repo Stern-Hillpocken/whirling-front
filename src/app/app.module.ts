@@ -18,7 +18,7 @@ import { SvgComponent } from './components/shared/svg/svg.component';
 import { provideState, provideStore, StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
-import { updateUserNameSuccess$, createGameSuccess$, postUpdateUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$ } from './store/game.effects';
+import { updateUserNameSuccess$, createGameSuccess$, postUpdateUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$, gatherGame$, gatherGameSuccess$ } from './store/game.effects';
 import { TokenInterceptor } from './core/token.interceptor';
 import { HubComponent } from "./components/game/hub/hub.component";
 
@@ -60,7 +60,9 @@ import { HubComponent } from "./components/game/hub/hub.component";
       postCreateGame$,
       createGameSuccess$,
       postUpdateUserName$,
-      updateUserNameSuccess$
+      updateUserNameSuccess$,
+      gatherGame$,
+      gatherGameSuccess$
     })
   ],
   bootstrap: [AppComponent]

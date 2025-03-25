@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Game } from 'src/app/models/game.model';
+import { gatherGameSuccess } from 'src/app/store/game.actions';
+import { selectGame, selectUserName } from 'src/app/store/game.selectors';
 
 @Component({
   selector: 'app-hub',
@@ -7,10 +11,20 @@ import { Component } from '@angular/core';
 })
 export class HubComponent {
 
+  store = inject(Store);
   circleSizeRadius: number = 40/2;
-  currentPlayers: string[] = ['Moi', 'Noa', 'Ostanis', 'Patrikorovitch', 'Quentino-el-bambino', 'Rudy', 'Somm', 'Tomtom'];
-  waitingPlayers: string[] = ['Georges', 'Anto', 'Kaba', 'Michiko', 'Don', 'Zur'];
+  currentPlayers: string[] = [];
   isRandomizedSeats: boolean = true;
+  userName!: string;
+
+  ngOnInit() {
+    this.store.select(selectGame).subscribe((game: Game) => {
+      this.currentPlayers = game.playersName;
+    });
+    this.store.select(selectUserName).subscribe((name: string) => {
+      this.userName = name;
+    });
+  }
 
   circlePlayerPositionX(i: number): string {
     return Math.round(this.circleSizeRadius * (Math.cos((((360 / this.currentPlayers.length) / 180) * i * Math.PI)-Math.PI/2))) + this.circleSizeRadius + 'vw';
@@ -29,6 +43,7 @@ export class HubComponent {
 
   randomizeSeats() {
     this.isRandomizedSeats = !this.isRandomizedSeats;
+    this.store.dispatch(gatherGameSuccess({"id":"ohhfqooxz","password":"losratone","ownerName":"Abraham Eleazar","date":1742916335867,"playersName":["Abraham","Christian","Nicolas","Nicolas","Anqi","Nicolas"]}))
   }
 
   launchGame() {

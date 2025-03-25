@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-    width: 100%;
 }
 
 .players-block {
@@ -36,9 +35,9 @@
         overflow: hidden;
         text-wrap: nowrap;
         transform: translate(-50%, 50%);
-        z-index: 100;
+        z-index: 10;
         &:hover {
-            z-index: 101;
+            z-index: 11;
         }
         &:hover button {
             display: inline-block;
@@ -53,5 +52,27 @@
             padding-left: var(--padding);
             padding-right: var(--padding);
         }
+        &.my-name {
+            border-color: var(--color-light-accent);
+            color: var(--color-light-accent);
+        }
     }
+}
+
+.needle {
+    position: absolute;
+    left: calc(-0.10vw - 0.75em);
+    top: 19.35vw;
+    height: 1vw;
+    width: calc(40vw + 1.5em); //div size - svg size
+    animation: arrowtation 12s linear infinite;
+}
+
+@keyframes arrowtation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

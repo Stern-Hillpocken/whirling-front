@@ -3,6 +3,7 @@ import { Identification } from "../models/identification.model";
 import { GameTheme } from "../types/game-theme.type";
 import { GameLogin } from "../models/game-login.model";
 import { OneValueObject } from "../models/one-value-object.model";
+import { Game } from "../models/game.model";
 
 
 //#region identification
@@ -42,4 +43,10 @@ export const joinGameFailure = createAction('[Room] Join game room with failure'
 export const updateGameTheme = createAction('[Settings] Update game theme', props<{ gameTheme: GameTheme }>());
 export const updateGameThemeSuccess = createAction('[Settings] Update game theme with success');
 export const updateGameThemeFailure = createAction('[Settings] Update game theme with failure');
+//#endregion
+
+//#region settings
+export const gatherGame = createAction('[Game] Gather game', props<OneValueObject>());
+export const gatherGameSuccess = createAction('[Game] Gather game with success', props<Game>());
+export const gatherGameFailure = createAction('[Game] Gather game with failure');
 //#endregion
