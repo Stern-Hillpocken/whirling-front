@@ -10,7 +10,7 @@
                     [ngClass]="userName === player ? 'my-name' : ''"
                 >
                     <span class="player-name"><app-svg name="host" *ngIf="i === 0"></app-svg>{{ player }}</span>
-                    <span class="rotation-buttons-container">
+                    <span class="rotation-buttons-container" *ngIf="isHost()">
                         <button (click)="moveClockwise(i)"><app-svg name="move-player-clockwise"></app-svg></button>
                         <button (click)="moveAnticlockwise(i)"><app-svg name="move-player-anticlockwise"></app-svg></button>
                     </span>
@@ -18,10 +18,10 @@
             </ng-container>
         </div>
 
-        <app-tip text="Survole un pseudo pour réarranger l’ordre autour de la table."></app-tip>
-        <button (click)="randomizeSeats()" class="button-revert randomize-button"><app-svg [name]="isRandomizedSeats ? 'checkbox-checked' : 'checkbox-blank'"></app-svg>Randomiser les sièges au lancement</button>
+        <app-tip text="Survole un pseudo pour réarranger l’ordre autour de la table." *ngIf="isHost()"></app-tip>
+        <button (click)="randomizeSeats()" class="button-revert randomize-button" *ngIf="isHost()"><app-svg [name]="isRandomizedSeats ? 'checkbox-checked' : 'checkbox-blank'"></app-svg>Randomiser les sièges au lancement</button>
     </div>
 
-    <button class="button-revert" (click)="launchGame()">Lancer la partie</button>
+    <button class="button-revert" (click)="launchGame()" *ngIf="isHost()">Lancer la partie</button>
 
 </div>

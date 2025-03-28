@@ -32,4 +32,10 @@ export class GameApiService {
       this.url + url
     );
   }
+
+  movePlayer(id: number, way: "clockwise" | "anticlockwise") {
+    this.http.post<any>(this.url + "/move-player/" + way,
+      new OneValueObject(id.toString())
+    ).subscribe();
+  }
 }
