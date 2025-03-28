@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { first, map, switchMap, tap } from 'rxjs';
 import { GameApiService } from '../services/game-api.service';
-import { updateUserName, updateUserNameSuccess, createGame, createGameSuccess, register, registerSuccess, sendMessageGlobal, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameSuccess } from './game.actions';
+import { updateUserName, updateUserNameSuccess, createGame, createGameSuccess, register, registerSuccess, sendMessageGlobal, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameSuccess, gatherGame, gatherGameSuccess } from './game.actions';
 import { Identification } from '../models/identification.model';
 import { MessageApiService } from '../services/message-api.service';
 import { MessageReceived } from '../models/message-received.model';
@@ -11,6 +11,8 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { UserApiService } from '../services/user-api.service';
 import { IdCredentials } from '../models/id-credentials.model';
 import { OneValueObject } from '../models/one-value-object.model';
+import { Game } from '../models/game.model';
+import { Store } from '@ngrx/store';
 
 export const postRegister$ = createEffect(
     (actions$ = inject(Actions), gameApiService = inject(UserApiService), localStorageService = inject(LocalStorageService)) => {
@@ -71,10 +73,10 @@ export const createGameSuccess$ = createEffect(
 );
 
 export const postUpdateUserName$ = createEffect(
-    (actions$ = inject(Actions), gameApiService = inject(UserApiService)) => {
+    (actions$ = inject(Actions), userApiService = inject(UserApiService)) => {
         return actions$.pipe(
             ofType(updateUserName.type),
-            switchMap((action: { value: string, type: string }) => gameApiService.postUpdateName(action.value)),
+            switchMap((action: { value: string, type: string }) => userApiService.postUpdateName(action.value)),
             map((ovo: OneValueObject) => updateUserNameSuccess(ovo))
         );
     },
@@ -87,6 +89,30 @@ export const updateUserNameSuccess$ = createEffect(
             ofType(updateUserNameSuccess.type),
             first(),
             tap((action: { value: string, type: string }) => localStorageService.setUserName(action.value))
+        );
+    },
+    { functional: true }
+);
+
+export const gatherGame$ = createEffect(
+    (actions$ = inject(Actions), gameApiService = inject(GameApiService)) => {
+        return actions$.pipe(
+            ofType(gatherGame.type),
+            switchMap((action: { value: string, type: string }) => gameApiService.getGame(action.value)),
+            map((game: Game) => gatherGameSuccess(game))
+        );
+    },
+    { functional: true }
+);
+
+export const gatherGameSuccess$ = createEffect(
+    (actions$ = inject(Actions), store = inject(Store)) => {
+        return actions$.pipe(
+            ofType(gatherGameSuccess.type),
+            first(),
+            tap((action: { value: Game, type: string }) => {
+                store.dispatch(gatherGameSuccess(action.value))
+            })
         );
     },
     { functional: true }

@@ -17,3 +17,8 @@ export const selectGameId = createSelector(
     selectApplicationState,
     (state: ApplicationState) => state.gameId 
 );
+
+export const selectGame = createSelector(
+    selectApplicationState,
+    (state: ApplicationState) => state.game
+);

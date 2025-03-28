@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { MessageReceived } from 'src/app/models/message-received.model';
@@ -28,7 +28,7 @@ export class ChatComponent {
   private store = inject(Store);
 
   ngOnInit() {
-    let ws = new SockJS('http://localhost:8080/ws');
+    const ws = new SockJS('http://localhost:8080/ws');
     this.socketClient = Stomp.over(ws);
     this.socketClient.connect({}, () => {
       this.notificationSubscriptionForGlobal = this.socketClient.subscribe(

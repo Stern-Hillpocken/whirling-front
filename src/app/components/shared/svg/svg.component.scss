@@ -8,10 +8,18 @@ svg{
 }
 
 @keyframes rotation {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slow-clockwise {
+  animation: rotation 3s linear infinite;
+}
+
+.slow-anticlockwise {
+  animation: rotation 3s linear infinite reverse;
+}
