@@ -61,4 +61,9 @@ export class MenuComponent {
     this.isSettingsDisplayed = false;
   }
 
+  ingameLink(): string {
+    const gameLogin: string | null = this.localStorageService.getGameLogin();
+    return gameLogin ? '/game/' + gameLogin : '';
+  }
+
 }

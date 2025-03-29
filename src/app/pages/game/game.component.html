@@ -1,7 +1,9 @@
-<h2>Hub</h2>
+<h2>{{ displayTitle() }}</h2>
 <div id="game-container">
     <app-chat></app-chat>
     <div id="game-content-container">
-        <app-hub></app-hub>
+        <app-hub *ngIf="isCurrentPhase('HUB')"></app-hub>
+        <app-setup *ngIf="isCurrentPhase('SETUP')"></app-setup>
+        <app-board *ngIf="isCurrentPhase('NOT-HUB')"></app-board>
     </div>
 </div>
