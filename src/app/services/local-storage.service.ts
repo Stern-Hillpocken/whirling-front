@@ -29,6 +29,10 @@ export class LocalStorageService {
     return window.localStorage.getItem("jwt");
   }
 
+  getGameLogin(): string | null {
+    return window.localStorage.getItem("gameLogin");
+  }
+
   setColorTheme(value: ColorTheme) {
     window.localStorage.setItem("colorTheme", value);
     window.document.getElementsByTagName("body")[0].setAttribute("theme", value);
@@ -54,6 +58,10 @@ export class LocalStorageService {
     this.setUserId(id);
     this.setUserName(name);
     this.setToken(jwt)
+  }
+
+  setGameLogin(id: string) {
+    window.localStorage.setItem("gameLogin", id);
   }
 
 }

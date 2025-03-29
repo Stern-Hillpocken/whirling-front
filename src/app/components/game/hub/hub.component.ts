@@ -49,11 +49,10 @@ export class HubComponent {
 
   randomizeSeats() {
     this.isRandomizedSeats = !this.isRandomizedSeats;
-    this.store.dispatch(gatherGameSuccess({"id":"ohhfqooxz","password":"losratone","ownerName":"Abraham Eleazar","date":1742916335867,"playersName":["Abraham","Christian","Nicolas","Nicolas","Anqi","Nicolas"]}))
   }
 
   launchGame() {
-    //
+    this.gameApiService.launch(this.isRandomizedSeats)
   }
 
 }

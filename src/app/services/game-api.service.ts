@@ -28,6 +28,7 @@ export class GameApiService {
   }
 
   getGame(url: string): Observable<Game> {
+    url = url.replace('/game', '');
     return this.http.get<Game>(
       this.url + url
     );
@@ -38,4 +39,10 @@ export class GameApiService {
       new OneValueObject(id.toString())
     ).subscribe();
   }
+
+  launch(needrandomize: boolean) {
+    const ovo: OneValueObject = needrandomize ? new OneValueObject("randomize") : new OneValueObject("");
+    this.http.post(this.url + '/launch', ovo).subscribe();
+  }
+
 }

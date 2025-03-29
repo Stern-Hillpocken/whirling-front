@@ -21,6 +21,8 @@ import { EffectsModule, provideEffects } from '@ngrx/effects';
 import { updateUserNameSuccess$, createGameSuccess$, postUpdateUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$, gatherGame$, gatherGameSuccess$ } from './store/game.effects';
 import { TokenInterceptor } from './core/token.interceptor';
 import { HubComponent } from "./components/game/hub/hub.component";
+import { SetupComponent } from "./components/game/setup/setup.component";
+import { BoardComponent } from './components/game/board/board.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { HubComponent } from "./components/game/hub/hub.component";
     TipComponent,
     MenuComponent,
     SvgComponent,
-    HubComponent
+    HubComponent,
+    SetupComponent,
+    BoardComponent
   ],
   imports: [
     BrowserModule,
