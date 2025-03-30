@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { GameApiService } from 'src/app/services/game-api.service';
 
 @Component({
   selector: 'app-setup',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrl: './setup.component.scss'
 })
 export class SetupComponent {
+
+  gameApiService = inject(GameApiService)
+
+  ready() {
+    this.gameApiService.readySetup(0);
+  }
 
 }

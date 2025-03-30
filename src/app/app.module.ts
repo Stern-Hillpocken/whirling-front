@@ -23,6 +23,8 @@ import { TokenInterceptor } from './core/token.interceptor';
 import { HubComponent } from "./components/game/hub/hub.component";
 import { SetupComponent } from "./components/game/setup/setup.component";
 import { BoardComponent } from './components/game/board/board.component';
+import { ChooseRecipeComponent } from './components/game/choose-recipe/choose-recipe.component';
+import { ProduceIngredientsComponent } from './components/game/produce-ingredients/produce-ingredients.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { BoardComponent } from './components/game/board/board.component';
     SvgComponent,
     HubComponent,
     SetupComponent,
-    BoardComponent
+    BoardComponent,
+    ChooseRecipeComponent,
+    ProduceIngredientsComponent
   ],
   imports: [
     BrowserModule,

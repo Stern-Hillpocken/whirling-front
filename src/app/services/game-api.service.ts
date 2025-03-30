@@ -45,4 +45,16 @@ export class GameApiService {
     this.http.post(this.url + '/launch', ovo).subscribe();
   }
 
+  readySetup(characterIndex: number) {
+    this.http.post(this.url + '/ready/setup', new OneValueObject(characterIndex.toString())).subscribe();
+  }
+
+  readyRecipe(recipeIndex: number) {
+    this.http.post(this.url + '/ready/recipe', new OneValueObject(recipeIndex.toString())).subscribe();
+  }
+
+  readyProduce() {
+    this.http.post(this.url + '/ready/produce', null).subscribe();
+  }
+
 }
