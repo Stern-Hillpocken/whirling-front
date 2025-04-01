@@ -45,8 +45,14 @@ export const updateGameThemeSuccess = createAction('[Settings] Update game theme
 export const updateGameThemeFailure = createAction('[Settings] Update game theme with failure');
 //#endregion
 
-//#region settings
+//#region game
 export const gatherGame = createAction('[Game] Gather game', props<OneValueObject>());
 export const gatherGameSuccess = createAction('[Game] Gather game with success', props<Game>());
 export const gatherGameFailure = createAction('[Game] Gather game with failure');
+
+export const gatherUserIndex = createAction('[Game] Gather user index');
+export const gatherUserIndexSuccess = createAction('[Game] Gather user index with success', props<OneValueObject>());
+export const gatherUserIndexFailure = createAction('[Game] Gather user index with failure', props<OneValueObject>());
+
+export const setLookingIndexModifier = createAction('[Game] Set lookingIndexModifier', props<{ setTo: -1 | 0 | 1 }>());
 //#endregion

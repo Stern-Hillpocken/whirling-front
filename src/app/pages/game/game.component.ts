@@ -5,7 +5,7 @@ import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import { OneValueObject } from 'src/app/models/one-value-object.model';
 import { GameApiService } from 'src/app/services/game-api.service';
-import { gatherGame, gatherGameSuccess } from 'src/app/store/game.actions';
+import { gatherGame, gatherGameSuccess, gatherUserIndex } from 'src/app/store/game.actions';
 import { selectGame } from 'src/app/store/game.selectors';
 import { Phase } from 'src/app/types/phase.type';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -27,12 +27,14 @@ export class GameComponent {
   ngOnInit() {
     this.localStorageService.setGameLogin(this.router.url.replace('/game/', ''));
     this.store.dispatch(gatherGame(new OneValueObject(this.router.url)));
+    this.store.dispatch(gatherUserIndex());
     const ws = new SockJS('http://localhost:8080/ws');
     this.socketClient = Stomp.over(ws);
     this.socketClient.connect({}, () => {
       this.notificationSubscriptionForGame = this.socketClient.subscribe(
         this.router.url,
         (message: any) => {
+          if (this.store.selectSignal(selectGame)().isStarted === false && JSON.parse(message.body).isStarted === true) this.store.dispatch(gatherUserIndex());
           this.store.dispatch(gatherGameSuccess(JSON.parse(message.body)));
         }
       );
