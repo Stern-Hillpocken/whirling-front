@@ -57,4 +57,8 @@ export class GameApiService {
     this.http.post(this.url + '/ready/produce', null).subscribe();
   }
 
+  getUserIndex(): Observable<OneValueObject> {
+    return this.http.get<OneValueObject>(this.url + '/my-index');
+  }
+
 }

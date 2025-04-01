@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { updateUserName, updateUserNameFailure, updateUserNameSuccess, createGame, createGameFailure, createGameSuccess, joinGame, joinGameFailure, joinGameSuccess, register, registerFailure, registerSuccess, sendMessageGlobal, sendMessageGlobalFailure, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameFailure, sendMessageIngameSuccess, updateGameTheme, updateGameThemeFailure, updateGameThemeSuccess, gatherGame, gatherGameSuccess } from './game.actions';
+import { updateUserName, updateUserNameFailure, updateUserNameSuccess, createGame, createGameFailure, createGameSuccess, joinGame, joinGameFailure, joinGameSuccess, register, registerFailure, registerSuccess, sendMessageGlobal, sendMessageGlobalFailure, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameFailure, sendMessageIngameSuccess, updateGameTheme, updateGameThemeFailure, updateGameThemeSuccess, gatherGame, gatherGameSuccess, gatherUserIndexSuccess, setLookingIndexModifier } from './game.actions';
 import { ApplicationState } from "../models/application-state";
 import { OneValueObject } from "../models/one-value-object.model";
 import { Game } from "../models/game.model";
@@ -8,7 +8,9 @@ export const initialState: ApplicationState = {
     userId: "",
     userName: "",
     gameId: "",
-    game: new Game('', '', '', 0, false, [], "CHECK_FOR_WINNERS", [])
+    game: new Game('', '', '', 0, false, [], "CHECK_FOR_WINNERS", []),
+    index: -1,
+    lookingIndexModifier: 0
 };
 
 export const gameReducer = createReducer(
@@ -110,5 +112,15 @@ export const gameReducer = createReducer(
     on(gatherGameSuccess, (state, newGame: Game) => ({
         ...state,
         game: newGame
+    })),
+
+    on(gatherUserIndexSuccess, (state, ovo: OneValueObject) => ({
+        ...state,
+        index: parseInt(ovo.value),
+    })),
+
+    on(setLookingIndexModifier, (state, obj: {setTo: -1 | 0 | 1}) => ({
+        ...state,
+        lookingIndexModifier: obj.setTo,
     })),
 );

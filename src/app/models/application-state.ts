@@ -4,5 +4,7 @@ export interface ApplicationState {
     userId: string,
     userName: string,
     gameId: string,
-    game: Game
+    game: Game,
+    index: number,
+    lookingIndexModifier: -1 | 0 | 1
 }

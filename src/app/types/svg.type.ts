@@ -1,4 +1,4 @@
-export type SvgType = "checkbox-checked" | "checkbox-blank"
+export type SvgType = "look-at-me" | "ready-people" | "look-neighbour" | "checkbox-checked" | "checkbox-blank"
     | "host" | "table-arrow" | "move-player-clockwise" | "move-player-anticlockwise"
     | "close" | "ingame" | "loading" | "message" | "message-new" | "settings" | "setVisible" | "setHidden" | "theme" | "tuto"
     | "element-black" | "element-white" | "element-red" | "element-green" | "element-blue"

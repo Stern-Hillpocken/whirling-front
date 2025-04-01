@@ -18,13 +18,14 @@ import { SvgComponent } from './components/shared/svg/svg.component';
 import { provideState, provideStore, StoreModule } from '@ngrx/store';
 import { gameReducer } from './store/game.reducer';
 import { EffectsModule, provideEffects } from '@ngrx/effects';
-import { updateUserNameSuccess$, createGameSuccess$, postUpdateUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$, gatherGame$, gatherGameSuccess$ } from './store/game.effects';
+import { updateUserNameSuccess$, createGameSuccess$, postUpdateUserName$, postCreateGame$, postMessageGlobal$, postMessageIngame$, postRegister$, gatherGame$, gatherGameSuccess$, gatherUserIndex$ } from './store/game.effects';
 import { TokenInterceptor } from './core/token.interceptor';
 import { HubComponent } from "./components/game/hub/hub.component";
 import { SetupComponent } from "./components/game/setup/setup.component";
 import { BoardComponent } from './components/game/board/board.component';
 import { ChooseRecipeComponent } from './components/game/choose-recipe/choose-recipe.component';
 import { ProduceIngredientsComponent } from './components/game/produce-ingredients/produce-ingredients.component';
+import { NeighbourhoodMenuComponent } from "./components/game/neighbourhood-menu/neighbourhood-menu.component";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProduceIngredientsComponent } from './components/game/produce-ingredien
     SetupComponent,
     BoardComponent,
     ChooseRecipeComponent,
-    ProduceIngredientsComponent
+    ProduceIngredientsComponent,
+    NeighbourhoodMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,8 @@ import { ProduceIngredientsComponent } from './components/game/produce-ingredien
       postUpdateUserName$,
       updateUserNameSuccess$,
       gatherGame$,
-      gatherGameSuccess$
+      gatherGameSuccess$,
+      gatherUserIndex$,
     })
   ],
   bootstrap: [AppComponent]

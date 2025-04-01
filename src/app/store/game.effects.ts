@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { first, map, switchMap, tap } from 'rxjs';
 import { GameApiService } from '../services/game-api.service';
-import { updateUserName, updateUserNameSuccess, createGame, createGameSuccess, register, registerSuccess, sendMessageGlobal, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameSuccess, gatherGame, gatherGameSuccess } from './game.actions';
+import { updateUserName, updateUserNameSuccess, createGame, createGameSuccess, register, registerSuccess, sendMessageGlobal, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameSuccess, gatherGame, gatherGameSuccess, gatherUserIndex, gatherUserIndexSuccess } from './game.actions';
 import { Identification } from '../models/identification.model';
 import { MessageApiService } from '../services/message-api.service';
 import { MessageReceived } from '../models/message-received.model';
@@ -113,6 +113,17 @@ export const gatherGameSuccess$ = createEffect(
             tap((action: { value: Game, type: string }) => {
                 store.dispatch(gatherGameSuccess(action.value))
             })
+        );
+    },
+    { functional: true }
+);
+
+export const gatherUserIndex$ = createEffect(
+    (actions$ = inject(Actions), gameApiService = inject(GameApiService)) => {
+        return actions$.pipe(
+            ofType(gatherUserIndex.type),
+            switchMap(() => gameApiService.getUserIndex()),
+            map((ovo: OneValueObject) => gatherUserIndexSuccess(ovo))
         );
     },
     { functional: true }

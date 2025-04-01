@@ -22,3 +22,13 @@ export const selectGame = createSelector(
     selectApplicationState,
     (state: ApplicationState) => state.game
 );
+
+export const selectIndex = createSelector(
+    selectApplicationState,
+    (state: ApplicationState) => state.index
+);
+
+export const selectLookingIndexModifier = createSelector(
+    selectApplicationState,
+    (state: ApplicationState) => state.lookingIndexModifier
+);

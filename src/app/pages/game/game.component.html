@@ -1,4 +1,5 @@
 <h2>{{ displayTitle() }}</h2>
+<app-neighbourhood-menu *ngIf="isCurrentPhase('NOT-HUB')"></app-neighbourhood-menu>
 <div id="game-container">
     <app-chat></app-chat>
     <div id="game-content-container">
