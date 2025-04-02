@@ -8,7 +8,7 @@ export const initialState: ApplicationState = {
     userId: "",
     userName: "",
     gameId: "",
-    game: new Game('', '', '', 0, false, [], "CHECK_FOR_WINNERS", []),
+    game: new Game('', '', '', 0, false, [], "CHECK_FOR_WINNERS", [], []),
     index: -1,
     lookingIndexModifier: 0
 };

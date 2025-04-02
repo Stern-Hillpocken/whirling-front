@@ -1,0 +1,1 @@
+export type Ingredient = "R" | "G" | "U" | "W" | "B" | "RG" | "RU" | "GU";

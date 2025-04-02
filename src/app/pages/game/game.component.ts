@@ -55,9 +55,10 @@ export class GameComponent {
     }
   }
 
-  isCurrentPhase(phase: Phase | 'HUB' | 'NOT-HUB'): boolean {
+  isCurrentPhase(phase: Phase | 'HUB' | 'NOT-HUB' | 'NOT-HUB-SETUP'): boolean {
     if (!this.store.selectSignal(selectGame)().isStarted && phase === 'HUB') return true;
     if (!this.store.selectSignal(selectGame)().isStarted) return false;
+    if (phase === 'NOT-HUB-SETUP' && this.store.selectSignal(selectGame)().currentPhase !== 'SETUP') return true;
     if (phase === 'NOT-HUB') return true;
     return this.store.selectSignal(selectGame)().currentPhase === phase;
   }

@@ -34,7 +34,7 @@
         <div id="svg-list">
             <ng-container *ngFor="let type of gameThemes">
                 <button (click)="changeGameTheme(type)" [ngClass]="type === gameThemeSelected ? 'button' : 'button-revert'">
-                    <ng-container *ngFor="let colorCube of ['black', 'white', 'red', 'green', 'blue']; let i = index">
+                    <ng-container *ngFor="let colorCube of ['black', 'white', 'red', 'blue', 'green']; let i = index">
                         <br *ngIf="i == 2">
                         <app-svg [name]="svgName(type, colorCube)"></app-svg>
                     </ng-container>

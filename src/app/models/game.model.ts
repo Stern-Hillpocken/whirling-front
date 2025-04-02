@@ -1,4 +1,5 @@
 import { Phase } from "../types/phase.type";
+import { PlayingArea } from "./playing-area.model";
 
 export class Game {
     constructor(
@@ -9,6 +10,7 @@ export class Game {
         public isStarted: boolean,
         public playersName: string[],
         public currentPhase: Phase,
-        public areReady: boolean[]
+        public areReady: boolean[],
+        public playingAreas: PlayingArea[]
     ){}
 }
