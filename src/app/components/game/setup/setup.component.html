@@ -1,2 +1,19 @@
-<p>setup works!</p>
-<button (click)="ready()">Ready ?</button>
+<div id="setup-container">
+    <div id="witches-container">
+        <ng-container *ngFor="let witch of witches; let w = index">
+            <button (click)="updateWitchChoice(w)" [ngClass]="w === witchChoice && lookingAtMe ? 'witch-selected' : 'witch'">
+                <p class="name">{{ witch.name }}</p>
+                <p>{{ witch.power }}</p>
+                <div class="ingredients-list">
+                    <div *ngFor="let ingredient of witch.ingredients; let i = index">
+                        <app-svg [name]="ingredientName(i)"></app-svg>
+                        <br>
+                        {{ ingredient }}
+                    </div>
+                </div>
+            </button>
+        </ng-container>
+    </div>
+    
+    <button (click)="ready()" class="button" *ngIf="lookingAtMe && witches.length > 1">Choisir ce personnage</button>
+</div>

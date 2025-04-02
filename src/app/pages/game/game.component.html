@@ -5,7 +5,7 @@
     <div id="game-content-container">
         <app-hub *ngIf="isCurrentPhase('HUB')"></app-hub>
         <app-setup *ngIf="isCurrentPhase('SETUP')"></app-setup>
-        <app-board *ngIf="isCurrentPhase('NOT-HUB')"></app-board>
+        <app-board *ngIf="isCurrentPhase('NOT-HUB-SETUP')"></app-board>
         <app-choose-recipe *ngIf="isCurrentPhase('PLAY_RECIPES')"></app-choose-recipe>
         <app-produce-ingredients *ngIf="isCurrentPhase('PRODUCE_INGREDIENTS')"></app-produce-ingredients>
     </div>

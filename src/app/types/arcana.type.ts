@@ -1,0 +1,1 @@
+export type Arcana = "CAULDRON" | "RAVEN" | "BOOK";

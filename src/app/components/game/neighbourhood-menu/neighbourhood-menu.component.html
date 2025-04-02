@@ -1,10 +1,10 @@
 <div id="neighbourhood-container">
     <div id="neighbourhood-swipper">
-        <button (click)="lookLeft()" *ngIf="indexModifier === 0"><<app-svg name="look-neighbour"></app-svg></button>
-        <button (click)="lookAtMe()" *ngIf="indexModifier === 1"><<app-svg name="look-at-me"></app-svg></button>
-        <p>{{ lookingName() }}</p>
-        <button (click)="lookRight()" *ngIf="indexModifier === 0"><app-svg name="look-neighbour"></app-svg>></button>
-        <button (click)="lookAtMe()" *ngIf="indexModifier === -1"><app-svg name="look-at-me"></app-svg>></button>
+        <button (click)="lookLeft()" *ngIf="indexModifier === 0" class="button-revert"><<app-svg name="look-neighbour"></app-svg></button>
+        <button (click)="lookAtMe()" *ngIf="indexModifier === 1" class="button-revert"><<app-svg name="look-at-me"></app-svg></button>
+        <p [ngClass]="indexModifier === 0 ? 'me' : ''">{{ lookingName() }}</p>
+        <button (click)="lookRight()" *ngIf="indexModifier === 0" class="button-revert"><app-svg name="look-neighbour"></app-svg>></button>
+        <button (click)="lookAtMe()" *ngIf="indexModifier === -1" class="button-revert"><app-svg name="look-at-me"></app-svg>></button>
     </div>
     <div>
         {{ howManyAreReady }} <app-svg name="ready-people"></app-svg>
