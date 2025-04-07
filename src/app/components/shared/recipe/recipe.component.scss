@@ -1,0 +1,34 @@
+.recipe {
+    background-color: var(--color-complement);
+    border: 2px solid var(--color-font);
+    border-radius: var(--border-radius);
+    width: 6em;
+}
+
+.clickable {
+    border-color: var(--color-accent);
+}
+
+.unclickable {
+    cursor: inherit;
+}
+
+.recipe:hover {
+    .both {
+        animation: rotation 0.5s linear;
+    }
+}
+
+.in-out {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(180deg);
+    }
+  }

@@ -26,6 +26,8 @@ import { BoardComponent } from './components/game/board/board.component';
 import { ChooseRecipeComponent } from './components/game/choose-recipe/choose-recipe.component';
 import { ProduceIngredientsComponent } from './components/game/produce-ingredients/produce-ingredients.component';
 import { NeighbourhoodMenuComponent } from "./components/game/neighbourhood-menu/neighbourhood-menu.component";
+import { RecipeComponent } from "./components/shared/recipe/recipe.component";
+import { HandComponent } from "./components/game/hand/hand.component";
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { NeighbourhoodMenuComponent } from "./components/game/neighbourhood-menu
     BoardComponent,
     ChooseRecipeComponent,
     ProduceIngredientsComponent,
-    NeighbourhoodMenuComponent
+    NeighbourhoodMenuComponent,
+    RecipeComponent,
+    HandComponent
   ],
   imports: [
     BrowserModule,

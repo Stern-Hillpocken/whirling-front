@@ -5,6 +5,7 @@ import { GameLogin } from '../models/game-login.model';
 import { OneValueObject } from '../models/one-value-object.model';
 import { GameInfo } from '../models/game-info.model';
 import { Game } from '../models/game.model';
+import { Recipe } from '../models/recipe.model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,8 +50,8 @@ export class GameApiService {
     this.http.post(this.url + '/ready/setup', new OneValueObject(characterIndex.toString())).subscribe();
   }
 
-  readyRecipe(recipeIndex: number) {
-    this.http.post(this.url + '/ready/recipe', new OneValueObject(recipeIndex.toString())).subscribe();
+  readyRecipe(recipe: Recipe) {
+    this.http.post(this.url + '/ready/recipe', recipe).subscribe();
   }
 
   readyProduce() {

@@ -1,0 +1,18 @@
+<button class="recipe" [ngClass]="value.direction === 'BOTH' ? 'clickable' : 'unclickable'">
+    <div class="arcana">
+        <ng-container *ngFor="let arcana of value.arcana">
+            <app-svg [name]="arcana"></app-svg>
+        </ng-container>
+    </div>
+    <div class="in-out">
+        <ng-container *ngFor="let i of value.input">
+            <div [ngClass]="i"></div>
+        </ng-container>
+    </div>
+    <div class="direction" [ngClass]="value.direction === 'BOTH' ? 'both' : ''"><app-svg [name]="value.direction"></app-svg></div>
+    <div class="in-out">
+        <ng-container *ngFor="let o of value.output">
+            <div [ngClass]="o"></div>
+        </ng-container>
+    </div>
+</button>

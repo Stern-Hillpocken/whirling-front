@@ -1,2 +1,12 @@
-<p>choose-recipe works!</p>
-<button (click)="ready()">Ready ?</button>
+<div id="choose-recipe">
+    <ng-container *ngFor="let recipe of recipes; let i = index">
+        <div class="recipe-container">
+            <app-recipe [value]="recipe" (click)="swap(i)"></app-recipe>
+            <button
+                class="button-revert"
+                (click)="ready(recipe)"
+                *ngIf="currentLIAM === 0 && !imReady"
+            >Choisir</button>
+        </div>
+    </ng-container>
+</div>

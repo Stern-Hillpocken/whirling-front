@@ -151,3 +151,37 @@ input {
 input[type=text] {
     padding-left: 0.25em;
 }
+
+.B, .W, .R, .U, .G, .RU, .RG, .UG, .EMPTY-INGREDIENT {
+    height: 1em;
+    width: 1em;
+    margin: 0.1em;
+    border-radius: calc(var(--border-radius)/2);
+}
+.EMPTY-INGREDIENT {
+    border: 2px solid var(--color-font);
+}
+.B {
+    background-color: var(--color-black);
+}
+.W {
+    background-color: var(--color-white);
+}
+.R {
+    background-color: var(--color-red);
+}
+.U {
+    background-color: var(--color-blue);
+}
+.G {
+    background-color: var(--color-green);
+}
+.RU {
+    background: (linear-gradient(135deg, var(--color-red) 0% 50%, var(--color-blue) 50% 100%));
+}
+.RG {
+    background: (linear-gradient(135deg, var(--color-red) 0% 50%, var(--color-green) 50% 100%));
+}
+.UG {
+    background: (linear-gradient(135deg, var(--color-blue) 0% 50%, var(--color-green) 50% 100%));
+}
