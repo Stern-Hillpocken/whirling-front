@@ -1,0 +1,10 @@
+#board-container {
+    background-color: var(--color-complement);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+}
+
+.ingredient-line {
+    display: flex;
+    justify-content: center;
+}

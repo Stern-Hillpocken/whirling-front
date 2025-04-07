@@ -14,7 +14,7 @@ import { selectUserName } from 'src/app/store/game.selectors';
 })
 export class ChatComponent {
 
-  displayMessagesOf: "global" | "ingame" | "hidden" = "global";
+  displayMessagesOf: "global" | "ingame" | "hidden" = "hidden";
   hasNewGlobalMessage: boolean = false;
   hasNewIngameMessage: boolean = false;
   messageGlobalList: MessageReceived[] = [];

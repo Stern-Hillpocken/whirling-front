@@ -1,1 +1,13 @@
-<p>board works!</p>
+<div id="board-container">
+    <ng-container *ngFor="let ingredient of INGREDIENT_NAMES">
+        <div class="ingredient-line">
+            <app-svg [name]="ingredientSvgName(ingredient)"></app-svg>
+            <ng-container *ngFor="let present of [].constructor(count(ingredient))">
+                <div [ngClass]="ingredient"></div>
+            </ng-container>
+            <ng-container *ngFor="let abs of [].constructor(max(ingredient)-count(ingredient))">
+                <div class="EMPTY-INGREDIENT"></div>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>
