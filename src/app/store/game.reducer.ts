@@ -1,8 +1,10 @@
 import { createReducer, on } from "@ngrx/store";
-import { updateUserName, updateUserNameFailure, updateUserNameSuccess, createGame, createGameFailure, createGameSuccess, joinGame, joinGameFailure, joinGameSuccess, register, registerFailure, registerSuccess, sendMessageGlobal, sendMessageGlobalFailure, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameFailure, sendMessageIngameSuccess, updateGameTheme, updateGameThemeFailure, updateGameThemeSuccess, gatherGame, gatherGameSuccess, gatherUserIndexSuccess, setLookingIndexModifier } from './game.actions';
+import { updateUserName, updateUserNameFailure, updateUserNameSuccess, createGame, createGameFailure, createGameSuccess, joinGame, joinGameFailure, joinGameSuccess, register, registerFailure, registerSuccess, sendMessageGlobal, sendMessageGlobalFailure, sendMessageGlobalSuccess, sendMessageIngame, sendMessageIngameFailure, sendMessageIngameSuccess, updateGameTheme, updateGameThemeFailure, updateGameThemeSuccess, gatherGame, gatherGameSuccess, gatherUserIndexSuccess, setLookingIndexModifier, resetIngredientsPreparation, setIngredientsPreparation, setSkillsOrder, resetSkillsOrder, resetSkillsPrepared, setSkillsPrepared, removeSkillPrepared, addSkillPrepared } from './game.actions';
 import { ApplicationState } from "../models/application-state";
 import { OneValueObject } from "../models/one-value-object.model";
 import { Game } from "../models/game.model";
+import { Ingredient } from "../types/ingredient.type";
+import { Recipe } from "../models/recipe.model";
 
 export const initialState: ApplicationState = {
     userId: "",
@@ -10,7 +12,10 @@ export const initialState: ApplicationState = {
     gameId: "",
     game: new Game('', '', '', 0, false, [], "CHECK_FOR_WINNERS", [], []),
     index: -1,
-    lookingIndexModifier: 0
+    lookingIndexModifier: 0,
+    skillsOrder: [],
+    skillsPrepared: [],
+    ingredientsPreparation: {in: [], out:[]},
 };
 
 export const gameReducer = createReducer(
@@ -122,5 +127,45 @@ export const gameReducer = createReducer(
     on(setLookingIndexModifier, (state, obj: {setTo: -1 | 0 | 1}) => ({
         ...state,
         lookingIndexModifier: obj.setTo,
+    })),
+
+    on(resetIngredientsPreparation, (state) => ({
+        ...state,
+        ingredientsPreparation: {in: [], out:[]}
+    })),
+
+    on(setIngredientsPreparation, (state, inout:{in: Ingredient[], out: Ingredient[]}) => ({
+        ...state,
+        ingredientsPreparation: inout
+    })),
+
+    on(resetSkillsOrder, (state) => ({
+        ...state,
+        skillsOrder: []
+    })),
+
+    on(setSkillsOrder, (state, obj:{order: number[]}) => ({
+        ...state,
+        skillsOrder: obj.order
+    })),
+
+    on(resetSkillsPrepared, (state) => ({
+        ...state,
+        skillsPrepared: []
+    })),
+
+    on(setSkillsPrepared, (state, obj:{skillsPrepared: Recipe[]}) => ({
+        ...state,
+        skillsPrepared: obj.skillsPrepared
+    })),
+
+    on(addSkillPrepared, (state, recipe: Recipe) => ({
+        ...state,
+        skillsPrepared: [...state.skillsPrepared, recipe]
+    })),
+
+    on(removeSkillPrepared, (state, recipe: Recipe) => ({
+        ...state,
+        skillsPrepared: state.skillsPrepared.filter(el => el !== recipe)
     })),
 );

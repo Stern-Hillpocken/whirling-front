@@ -28,4 +28,12 @@ export class UtilsService {
     return "close";
   }
 
+  sortIngredientsLetter(array: Ingredient[]): Ingredient[] {
+    let newArray: Ingredient[] = [];
+    for (const i of ['B', 'W', 'R', 'Ru', 'rU', 'Rg', 'U', 'Ug', 'uG', 'G', 'rG']) {
+      for (let t = 0; t < array.filter(el => el === i).length; t++) newArray.push(i as Ingredient);
+    }
+    return newArray;
+  }
+
 }

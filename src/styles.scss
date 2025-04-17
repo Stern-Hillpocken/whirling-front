@@ -152,7 +152,7 @@ input[type=text] {
     padding-left: 0.25em;
 }
 
-.B, .W, .R, .U, .G, .RU, .RG, .UG, .EMPTY-INGREDIENT {
+.B, .W, .R, .U, .G, .RU, .RG, .UG, .Ru, .rU, .Rg, .rG, .Ug, .uG, .EMPTY-INGREDIENT, .b, .w, .r, .u, .g {
     height: 1em;
     width: 1em;
     margin: 0.1em;
@@ -167,13 +167,13 @@ input[type=text] {
 .W {
     background-color: var(--color-white);
 }
-.R {
+.R, .Rg, .Ru {
     background-color: var(--color-red);
 }
-.U {
+.U, .rU, .Ug {
     background-color: var(--color-blue);
 }
-.G {
+.G, .rG, .uG {
     background-color: var(--color-green);
 }
 .RU {
@@ -185,3 +185,34 @@ input[type=text] {
 .UG {
     background: (linear-gradient(135deg, var(--color-blue) 0% 50%, var(--color-green) 50% 100%));
 }
+.b {
+    border: 2px dotted var(--color-black);
+}
+.w {
+    border: 2px dotted var(--color-white);
+}
+.r, .rU, .rG {
+    border: 2px solid var(--color-red);
+}
+.u, .Ru, .uG {
+    border: 2px solid var(--color-blue);
+}
+.g, .Rg, .Ug {
+    border: 2px solid var(--color-green);
+}
+
+.blinking {
+    animation: blink 1.5s linear infinite;
+}
+
+@keyframes blink {
+    from {
+        opacity:0;
+    }
+    50% {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+  }

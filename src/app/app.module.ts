@@ -27,7 +27,7 @@ import { ChooseRecipeComponent } from './components/game/choose-recipe/choose-re
 import { ProduceIngredientsComponent } from './components/game/produce-ingredients/produce-ingredients.component';
 import { NeighbourhoodMenuComponent } from "./components/game/neighbourhood-menu/neighbourhood-menu.component";
 import { RecipeComponent } from "./components/shared/recipe/recipe.component";
-import { HandComponent } from "./components/game/hand/hand.component";
+import { HandComponent } from "./components/game/skills/skills.component";
 
 @NgModule({
   declarations: [

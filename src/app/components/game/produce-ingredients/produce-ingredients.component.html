@@ -1,2 +1,18 @@
-<p>produce-ingredients works!</p>
-<button (click)="ready()">Ready ?</button>
+<div *ngIf="lim === 0 && !iamReady">
+    <button (click)="ready()" class="button-revert">
+        <div class="ingredients-container">
+            <ng-container *ngFor="let ingredient of ingredientIn">
+                <div [class]="ingredient"></div>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="ingredientIn.length > 0 || ingredientOut.length > 0">
+            <app-svg name="ONE"></app-svg> Lancer cette planification <app-svg name="ONE"></app-svg>
+        </ng-container>
+        <ng-container *ngIf="ingredientIn.length === 0 && ingredientOut.length === 0">{{ buttonText }}</ng-container>
+        <div class="ingredients-container">
+            <ng-container *ngFor="let ingredient of ingredientOut">
+                <div [class]="ingredient"></div>
+            </ng-container>
+        </div>
+    </button>
+</div>

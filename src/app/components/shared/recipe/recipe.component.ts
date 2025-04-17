@@ -1,5 +1,6 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
+import { Ingredient } from 'src/app/types/ingredient.type';
 
 @Component({
   selector: 'app-recipe',
@@ -9,6 +10,19 @@ import { Recipe } from 'src/app/models/recipe.model';
 export class RecipeComponent {
 
   @Input()
+  recipeIndex: number = -1;
+
+  @Input()
   value!: Recipe;
+
+  @Input()
+  isASkill: boolean = false;
+
+  @Output()
+  ingredientChangedEmitter: EventEmitter<{recipeIndex: number, inputOutput:"input"|"output", index:number}> = new EventEmitter();
+
+  onClick(commingFrom: "input" | "output", index: number) {
+   this.ingredientChangedEmitter.emit({recipeIndex:this.recipeIndex, inputOutput:commingFrom, index:index});
+  }
 
 }

@@ -54,8 +54,8 @@ export class GameApiService {
     this.http.post(this.url + '/ready/recipe', recipe).subscribe();
   }
 
-  readyProduce() {
-    this.http.post(this.url + '/ready/produce', null).subscribe();
+  readyProduce(recipes: Recipe[]) {
+    this.http.post(this.url + '/ready/produce', recipes).subscribe();
   }
 
   getUserIndex(): Observable<OneValueObject> {

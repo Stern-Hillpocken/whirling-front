@@ -1,18 +1,20 @@
 <button class="recipe" [ngClass]="value.direction === 'BOTH' ? 'clickable' : 'unclickable'">
-    <div class="arcana">
+    <div class="arcana" *ngIf="!isASkill">
         <ng-container *ngFor="let arcana of value.arcana">
             <app-svg [name]="arcana"></app-svg>
         </ng-container>
     </div>
     <div class="in-out">
-        <ng-container *ngFor="let i of value.input">
-            <div [ngClass]="i"></div>
+        <ng-container *ngFor="let i of value.input; let index = index">
+            <div *ngIf="i.length === 1 || !isASkill" [ngClass]="i"></div>
+            <button *ngIf="i.length === 2 && isASkill" [ngClass]="i" (click)="onClick('input', index)"></button>
         </ng-container>
     </div>
-    <div class="direction" [ngClass]="value.direction === 'BOTH' ? 'both' : ''"><app-svg [name]="value.direction"></app-svg></div>
+    <div class="direction" [ngClass]="value.direction === 'BOTH' ? 'both' : ''" *ngIf="value.input.length > 0 || value.output.length > 0"><app-svg [name]="value.direction"></app-svg></div>
     <div class="in-out">
-        <ng-container *ngFor="let o of value.output">
-            <div [ngClass]="o"></div>
+        <ng-container *ngFor="let o of value.output; let index = index">
+            <div *ngIf="o.length === 1 || !isASkill" [ngClass]="o"></div>
+            <button *ngIf="o.length === 2 && isASkill" [ngClass]="o" (click)="onClick('output', index)"></button>
         </ng-container>
     </div>
 </button>

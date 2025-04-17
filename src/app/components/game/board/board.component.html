@@ -1,13 +1,18 @@
 <div id="board-container">
     <ng-container *ngFor="let ingredient of INGREDIENT_NAMES">
         <div class="ingredient-line">
+            <app-svg [name]="issueSign(ingredient)" *ngIf="issueSign(ingredient) != 'close'" class="blinking"></app-svg>
             <app-svg [name]="ingredientSvgName(ingredient)"></app-svg>
-            <ng-container *ngFor="let present of [].constructor(count(ingredient))">
+            <ng-container *ngFor="let present of [].constructor(count(ingredient, 'not-prepared'))">
                 <div [ngClass]="ingredient"></div>
             </ng-container>
-            <ng-container *ngFor="let abs of [].constructor(max(ingredient)-count(ingredient))">
+            <ng-container *ngFor="let prep of [].constructor(count(ingredient, 'prepared'))">
+                <div [ngClass]="ingredient.toLowerCase()"></div>
+            </ng-container>
+            <ng-container *ngFor="let abs of [].constructor(count(ingredient, 'empty'))">
                 <div class="EMPTY-INGREDIENT"></div>
             </ng-container>
+            <app-svg [name]="issueSign(ingredient)" *ngIf="issueSign(ingredient) != 'close'" class="blinking"></app-svg>
         </div>
     </ng-container>
 </div>
