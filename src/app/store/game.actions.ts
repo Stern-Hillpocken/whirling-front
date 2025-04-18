@@ -58,10 +58,10 @@ export const gatherUserIndexFailure = createAction('[Game] Gather user index wit
 
 export const setLookingIndexModifier = createAction('[Game] Set lookingIndexModifier', props<{ setTo: -1 | 0 | 1 }>());
 
-export const resetSkillsOrder = createAction('[Game] Set skills order');
+export const resetSkillsOrder = createAction('[Game] Reset skills order');
 export const setSkillsOrder = createAction('[Game] Set skills order', props<{order: number[]}>());
-export const resetSkillsPrepared = createAction('[Game] Set skills prepared');
-export const setSkillsPrepared = createAction('[Game] Reset skills prepared', props<{skillsPrepared: Recipe[]}>());
+export const resetSkillsPrepared = createAction('[Game] Reset skills prepared');
+export const setSkillsPrepared = createAction('[Game] Set skills prepared', props<{skillsPrepared: Recipe[]}>());
 export const addSkillPrepared = createAction('[Game] Add skill prepared', props<Recipe>());
 export const removeSkillPrepared = createAction('[Game] Remove skill prepared', props<Recipe>());
 //#endregion

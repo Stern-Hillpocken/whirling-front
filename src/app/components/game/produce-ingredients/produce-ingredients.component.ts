@@ -23,6 +23,7 @@ export class ProduceIngredientsComponent {
   ingredientOut: Ingredient[] = [];
   orderedRecipes: Recipe[] = [];
   iamReady: boolean = false;
+  nothingIsSelected = false;
   buttonText: string = "Choisir l’ordre d’application...";
 
   ngOnInit() {
@@ -37,13 +38,17 @@ export class ProduceIngredientsComponent {
     this.store.select(selectSkillsPrepared).subscribe((skp: Recipe[]) => {
       this.orderedRecipes = skp;
     });
+    this.store.select(selectSkillsOrder).subscribe((order: number[]) => {
+      this.nothingIsSelected = order.filter(el => el === -1).length === order.length;
+    });
   }
 
   ready() {
-    if (this.buttonText === "Choisir l’ordre d’application..." && this.store.selectSignal(selectSkillsOrder)().filter(el => el !== -1).length === 0) {
+    if (this.buttonText === "Choisir l’ordre d’application..." && this.nothingIsSelected) {
       this.buttonText = "Ne rien envoyer !";
     } else {
-      this.gameApiService.readyProduce(this.utilsService.transformRecipeWithMultiIngredientToSolo(this.orderedRecipes));
+      const soloRecipe = this.utilsService.transformRecipeWithMultiIngredientToSolo(this.orderedRecipes);
+      this.gameApiService.readyProduce(soloRecipe);
       this.store.dispatch(resetSkillsOrder());
       this.store.dispatch(resetIngredientsPreparation());
       this.store.dispatch(resetSkillsPrepared());
