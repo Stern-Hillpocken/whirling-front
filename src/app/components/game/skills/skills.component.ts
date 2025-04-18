@@ -4,7 +4,7 @@ import { Game } from 'src/app/models/game.model';
 import { Recipe } from 'src/app/models/recipe.model';
 import { UtilsService } from 'src/app/services/utils.service';
 import { setIngredientsPreparation, setSkillsOrder, addSkillPrepared, removeSkillPrepared } from 'src/app/store/game.actions';
-import { selectGame, selectIndex, selectLookingIndexModifier } from 'src/app/store/game.selectors';
+import { selectGame, selectIndex, selectLookingIndexModifier, selectSkillsOrder, selectSkillsPrepared } from 'src/app/store/game.selectors';
 import { Ingredient } from 'src/app/types/ingredient.type';
 import { Phase } from 'src/app/types/phase.type';
 
@@ -66,7 +66,9 @@ export class HandComponent {
         output.push(...this.skills[i].output);
       }
     }
+    input = this.utilsService.transformMutiIngredientListToSoloList(input);
     input = this.utilsService.sortIngredientsLetter(input);
+    output = this.utilsService.transformMutiIngredientListToSoloList(output);
     output = this.utilsService.sortIngredientsLetter(output);
     this.store.dispatch(setIngredientsPreparation({in: input, out: output}));
   }

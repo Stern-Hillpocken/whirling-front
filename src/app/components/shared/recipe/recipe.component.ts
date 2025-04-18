@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe.model';
-import { Ingredient } from 'src/app/types/ingredient.type';
 
 @Component({
   selector: 'app-recipe',
