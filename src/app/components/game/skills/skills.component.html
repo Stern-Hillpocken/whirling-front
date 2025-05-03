@@ -1,7 +1,7 @@
 <div id="skills-container">
     <ng-container *ngFor="let recipe of skills; let i = index">
         <div class="skill">
-            <app-recipe [recipeIndex]="i" [value]="recipe" [isASkill]="true" (ingredientChangedEmitter)="onIngredientChanged($event)"></app-recipe>
+            <app-recipe [recipeIndex]="i" [value]="recipe" [isASkill]="true" [isIngredientsClickable]="isIC()" (ingredientChangedEmitter)="onIngredientChanged($event)"></app-recipe>
             <button
                 *ngIf="phase === 'PRODUCE_INGREDIENTS' && lim === 0 && !iamReady"
                 class="button-toggle"

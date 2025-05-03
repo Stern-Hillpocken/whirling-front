@@ -17,6 +17,9 @@ export class RecipeComponent {
   @Input()
   isASkill: boolean = false;
 
+  @Input()
+  isIngredientsClickable: boolean = false;
+
   @Output()
   ingredientChangedEmitter: EventEmitter<{recipeIndex: number, inputOutput:"input"|"output", index:number}> = new EventEmitter();
 

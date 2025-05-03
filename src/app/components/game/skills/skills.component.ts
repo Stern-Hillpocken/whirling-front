@@ -47,8 +47,7 @@ export class HandComponent {
     if (this.skillsSelected[i] != -1) {
       this.skillsSelected[i] = -1;
       this.store.dispatch(removeSkillPrepared(this.skills[i]));
-    }
-    else {
+    } else {
       this.skillsSelected[i] = max + 1;
       this.store.dispatch(addSkillPrepared(this.skills[i]));
     }
@@ -74,11 +73,18 @@ export class HandComponent {
   }
 
   onIngredientChanged(event: {recipeIndex: number, inputOutput: "input"|"output", index: number}) {
-    if (this.skills[event.recipeIndex][event.inputOutput][event.index][1] === this.skills[event.recipeIndex][event.inputOutput][event.index][1].toUpperCase()) {
-      this.skills[event.recipeIndex][event.inputOutput][event.index] = this.skills[event.recipeIndex][event.inputOutput][event.index][0].toUpperCase() + this.skills[event.recipeIndex][event.inputOutput][event.index][1].toLowerCase() as Ingredient;
+    const all = this.skills[event.recipeIndex][event.inputOutput][event.index];
+    const firstLetter = all.slice()[0];
+    const secondLetter = all.slice()[1];
+    if (secondLetter === secondLetter.toUpperCase()) {
+      this.skills[event.recipeIndex][event.inputOutput][event.index] = firstLetter.slice().toUpperCase() + secondLetter.slice().toLowerCase() as Ingredient;
     } else {
-      this.skills[event.recipeIndex][event.inputOutput][event.index] = this.skills[event.recipeIndex][event.inputOutput][event.index][0].toLowerCase() + this.skills[event.recipeIndex][event.inputOutput][event.index][1].toUpperCase() as Ingredient;
+      this.skills[event.recipeIndex][event.inputOutput][event.index] = firstLetter.slice().toLowerCase() + secondLetter.slice().toUpperCase() as Ingredient;
     }
+  }
+
+  isIC(): boolean {
+    return this.phase === 'PRODUCE_INGREDIENTS' && this.lim === 0 && !this.iamReady;
   }
 
 }

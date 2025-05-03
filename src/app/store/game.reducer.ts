@@ -166,6 +166,11 @@ export const gameReducer = createReducer(
 
     on(removeSkillPrepared, (state, recipe: Recipe) => ({
         ...state,
-        skillsPrepared: state.skillsPrepared.filter(el => el !== recipe)
+        skillsPrepared: state.skillsPrepared.filter(el => !(
+            el.arcana === recipe.arcana
+            && el.input === recipe.input
+            && el.direction === recipe.direction
+            && el.output === recipe.output
+        ))
     })),
 );
