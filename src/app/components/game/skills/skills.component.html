@@ -1,0 +1,15 @@
+<div id="skills-container">
+    <ng-container *ngFor="let recipe of skills; let i = index">
+        <div class="skill">
+            <app-recipe [recipeIndex]="i" [value]="recipe" [isASkill]="true" [isIngredientsClickable]="isIC()" (ingredientChangedEmitter)="onIngredientChanged($event)"></app-recipe>
+            <button
+                *ngIf="phase === 'PRODUCE_INGREDIENTS' && lim === 0 && !iamReady"
+                class="button-toggle"
+                [ngClass]="skillsSelected[i] === -1 ? 'button-revert' : 'button'"
+                (click)="skillToggle(i)"
+            >
+                {{ skillsSelected[i] === -1 ? 'Appliquer' : skillsSelected[i] }}
+            </button>
+        </div>
+    </ng-container>
+</div>

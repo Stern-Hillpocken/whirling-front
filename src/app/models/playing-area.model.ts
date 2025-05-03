@@ -9,6 +9,5 @@ export class PlayingArea {
         public workbench: Ingredient[],
         public hand: Recipe[],
         public skills: Recipe[],
-        public skillsUsed: boolean[]
     ){}
 }

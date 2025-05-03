@@ -1,0 +1,16 @@
+#skills-container {
+    background-color: var(--color-complement);
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    display: flex;
+    gap: 0.5em;
+}
+
+.skill {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-toggle {
+    width: inherit;
+}

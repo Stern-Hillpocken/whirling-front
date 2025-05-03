@@ -2,6 +2,7 @@ import { Arcana } from "./arcana.type";
 import { Direction } from "./direction.type";
 
 export type SvgType = Arcana | Direction
+    | "warning-ingredient" | "error-ingredient"
     | "look-at-me" | "ready-people" | "look-neighbour" | "checkbox-checked" | "checkbox-blank"
     | "host" | "table-arrow" | "move-player-clockwise" | "move-player-anticlockwise"
     | "close" | "ingame" | "loading" | "message" | "message-new" | "settings" | "setVisible" | "setHidden" | "theme" | "tuto"

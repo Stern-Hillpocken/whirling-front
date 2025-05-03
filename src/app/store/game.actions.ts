@@ -4,6 +4,8 @@ import { GameTheme } from "../types/game-theme.type";
 import { GameLogin } from "../models/game-login.model";
 import { OneValueObject } from "../models/one-value-object.model";
 import { Game } from "../models/game.model";
+import { Ingredient } from "../types/ingredient.type";
+import { Recipe } from "../models/recipe.model";
 
 
 //#region identification
@@ -55,4 +57,16 @@ export const gatherUserIndexSuccess = createAction('[Game] Gather user index wit
 export const gatherUserIndexFailure = createAction('[Game] Gather user index with failure', props<OneValueObject>());
 
 export const setLookingIndexModifier = createAction('[Game] Set lookingIndexModifier', props<{ setTo: -1 | 0 | 1 }>());
+
+export const resetSkillsOrder = createAction('[Game] Reset skills order');
+export const setSkillsOrder = createAction('[Game] Set skills order', props<{order: number[]}>());
+export const resetSkillsPrepared = createAction('[Game] Reset skills prepared');
+export const setSkillsPrepared = createAction('[Game] Set skills prepared', props<{skillsPrepared: Recipe[]}>());
+export const addSkillPrepared = createAction('[Game] Add skill prepared', props<Recipe>());
+export const removeSkillPrepared = createAction('[Game] Remove skill prepared', props<Recipe>());
+//#endregion
+
+//#region ingredient
+export const resetIngredientsPreparation = createAction('[Ingredient] Reset in and out');
+export const setIngredientsPreparation = createAction('[Ingredient] Set in and out', props<{in: Ingredient[], out: Ingredient[]}>());
 //#endregion

@@ -32,3 +32,18 @@ export const selectLookingIndexModifier = createSelector(
     selectApplicationState,
     (state: ApplicationState) => state.lookingIndexModifier
 );
+
+export const selectIngredientsPreparation = createSelector(
+    selectApplicationState,
+    (state: ApplicationState) => state.ingredientsPreparation
+);
+
+export const selectSkillsOrder = createSelector(
+    selectApplicationState,
+    (state: ApplicationState) => state.skillsOrder
+);
+
+export const selectSkillsPrepared = createSelector(
+    selectApplicationState,
+    (state: ApplicationState) => state.skillsPrepared
+);

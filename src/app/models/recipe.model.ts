@@ -9,4 +9,11 @@ export class Recipe {
         public direction: Direction,
         public output: Ingredient[]
     ){}
+
+    equals(otherRecipe: Recipe): boolean {
+        return this.arcana === otherRecipe.arcana
+        && this.input === otherRecipe.input
+        && this.direction === otherRecipe.direction
+        && this.output === otherRecipe.output;
+    }
 }
